@@ -2,45 +2,43 @@
 import 'dart:convert';
 
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:ieee_event_app/core/enums/user_role_enum.dart';
 
 class UserModel {
   const UserModel({
     required this.name,
     required this.email,
     required this.uid,
+    required this.role,
+    required this.token,
   });
   final String name;
   final String email;
   final String uid;
+  final EUserRole role;
+  final String token;
 
-  factory UserModel.fromMap(Map<String, dynamic> map) {
-    return UserModel(
-      name: map['name'] as String,
-      email: map['email'] as String,
-      uid: map['uid'] as String,
-    );
+  @override
+  String toString() {
+    return 'UserModel(name: $name, email: $email, uid: $uid, role: $role, token: $token)';
   }
 
   factory UserModel.fromJson(String source) =>
       UserModel.fromMap(json.decode(source) as Map<String, dynamic>);
 
-  factory UserModel.fromFirebaseUser(User fbUser) {
-    return UserModel(
-      name: fbUser.displayName ?? '',
-      email: fbUser.email ?? '',
-      uid: fbUser.uid,
-    );
-  }
-
   UserModel copyWith({
     String? name,
     String? email,
     String? uid,
+    EUserRole? role,
+    String? token,
   }) {
     return UserModel(
       name: name ?? this.name,
       email: email ?? this.email,
       uid: uid ?? this.uid,
+      role: role ?? this.role,
+      token: token ?? this.token,
     );
   }
 
@@ -49,11 +47,41 @@ class UserModel {
       'name': name,
       'email': email,
       'uid': uid,
+      'role': role.name,
+      'token': token,
     };
+  }
+
+  factory UserModel.fromMap(Map<String, dynamic> map) {
+    return UserModel(
+      name: map['name'] as String,
+      email: map['email'] as String,
+      uid: map['uid'] as String,
+      role: EUserRole.fromString(map['role'] as String),
+      token: map['token'] as String,
+    );
   }
 
   String toJson() => json.encode(toMap());
 
+  factory UserModel.fromFirebaseUser(User fbUser) {
+    return UserModel(
+      name: fbUser.displayName ?? '',
+      email: fbUser.email ?? '',
+      uid: fbUser.uid,
+      role: EUserRole.admin,
+      token: '',
+    );
+  }
+
   @override
-  String toString() => 'UserModel(name: $name, email: $email, uid: $uid)';
+  bool operator ==(covariant UserModel other) {
+    if (identical(this, other)) return true;
+
+    return other.name == name &&
+        other.email == email &&
+        other.uid == uid &&
+        other.role == role &&
+        other.token == token;
+  }
 }

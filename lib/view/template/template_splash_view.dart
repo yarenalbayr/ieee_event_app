@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:ieee_event_app/core/constants/string_constants.dart';
+
 import 'package:ieee_event_app/core/extensions/index.dart';
 import 'package:ieee_event_app/core/navigation/navigation_extension.dart';
 
@@ -40,14 +40,14 @@ class _TemplateSplashViewState<B extends StateStreamable<S>, S>
       builder: (context, state) {
         final error = widget.onError(state);
         if (error != null) {
-          return const Center(child: Text(StringConstants.error));
+          return const Center(child: Text(''));
         }
         return Scaffold(
           body: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               const Text(
-                StringConstants.loading,
+                '',
               ),
               SizedBox(height: context.height * 0.1),
               const Center(
