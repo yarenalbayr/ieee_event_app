@@ -1,0 +1,10 @@
+{
+    "auth":{
+        "login": "Giriş yap",
+        "email": "Email",
+        "password": "Şifre",
+        "dont_have_account": "Hesabın yok mu?",
+        "sign_up": "Kayıt ol",
+        "already_have_account": "Hesabın var mı?"
+    }
+}

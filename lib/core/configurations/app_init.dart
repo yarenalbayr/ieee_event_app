@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class ApplicationStart {
-  const ApplicationStart._();
+class ApplicationInit {
+  const ApplicationInit._();
 
   static Future<void> init() async {
     WidgetsFlutterBinding.ensureInitialized();
