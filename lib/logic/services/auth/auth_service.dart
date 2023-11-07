@@ -1,5 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:ieee_event_app/core/enums/firebase_collections.dart';
 import 'package:ieee_event_app/core/exceptions/auth_exception.dart';
 import 'package:ieee_event_app/core/extensions/either_extension.dart';
 import 'package:ieee_event_app/core/helpers/logger.dart';
@@ -17,9 +18,15 @@ abstract class IAuthService {
   });
 
   Future<Either<Exception, void>> signOut();
+
+  //checks if user exist on database
+  Future<Either<Exception, bool>> checkUser();
+
+  //saves user to database
+  Future<Either<Exception, void>> saveUser(UserModel user);
 }
 
-class AuthService implements IAuthService {
+final class AuthService implements IAuthService {
   AuthService() : _firebaseAuth = FirebaseAuth.instance;
 
   final FirebaseAuth _firebaseAuth;
@@ -51,6 +58,30 @@ class AuthService implements IAuthService {
 
       final user = userCredantials.user!;
       return UserModel.fromFirebaseUser(user).toRight();
+    });
+  }
+
+  @override
+  Future<Either<Exception, bool>> checkUser() {
+    return _errorWrapper(() async {
+      final userUID = _firebaseAuth.currentUser?.uid;
+      final userExists = await FirebaseCollections.users.collectionRef
+          .doc(userUID)
+          .get()
+          .then((value) => value.exists);
+
+      return userExists.toRight();
+    });
+  }
+
+  @override
+  Future<Either<Exception, void>> saveUser(UserModel user) {
+    return _errorWrapper(() async {
+      final userUID = _firebaseAuth.currentUser?.uid;
+      await FirebaseCollections.users.collectionRef
+          .doc(userUID)
+          .set(user.toMap());
+      return user.toMap().toRight();
     });
   }
 
