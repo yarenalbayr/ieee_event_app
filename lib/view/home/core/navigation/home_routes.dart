@@ -1,6 +1,6 @@
 class HomeRoutes{
-  static const String home = '/home';
-  static const String homeDetail = '$home${_RawHomeRoutes.detail}';
+  static const String moduleName = '/home';
+  static const String homeDetail = '$moduleName${_RawHomeRoutes.detail}';
 }
 
 class _RawHomeRoutes{

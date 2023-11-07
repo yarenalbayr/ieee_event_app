@@ -28,7 +28,6 @@ class _AuthStateListenerWrapperState extends State<AuthStateListenerWrapper> {
   @override
   void initState() {
     super.initState();
-
     final userBloc = context.get<UserBloc>();
     final homeBloc = context.get<HomeBloc>();
 
@@ -61,6 +60,7 @@ class _AuthStateListenerWrapperState extends State<AuthStateListenerWrapper> {
         );
       },
       child: BlocListener<HomeBloc, HomeState>(
+        bloc: context.get<HomeBloc>(),
         listener: (context, state) {
           state.mapOrNull(
             success: (value) {

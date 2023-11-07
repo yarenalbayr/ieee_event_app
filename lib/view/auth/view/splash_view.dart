@@ -20,7 +20,7 @@ class SplashView extends StatelessWidget {
       },
       onStateChange: (state) {
         state.mapOrNull(
-          success: (value) => Modular.to.navigate(HomeRoutes.home),
+          success: (value) => Modular.to.navigate(HomeRoutes.moduleName),
         );
       },
     );
