@@ -1,5 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:ieee_event_app/core/enums/firebase_collections.dart';
 import 'package:ieee_event_app/core/exceptions/auth_exception.dart';
 import 'package:ieee_event_app/core/extensions/either_extension.dart';
 import 'package:ieee_event_app/core/helpers/logger.dart';
@@ -17,9 +18,15 @@ abstract class IAuthService {
   });
 
   Future<Either<Exception, void>> signOut();
+
+  //saves user to database
+  Future<Either<Exception, void>> saveUser(UserModel user);
+
+  //fetch user, return null if not exist
+  Future<Either<Exception, UserModel?>> fetchUser({String? uid});
 }
 
-class AuthService implements IAuthService {
+final class AuthService implements IAuthService {
   AuthService() : _firebaseAuth = FirebaseAuth.instance;
 
   final FirebaseAuth _firebaseAuth;
@@ -33,8 +40,9 @@ class AuthService implements IAuthService {
       final userCredentials = await _firebaseAuth
           .createUserWithEmailAndPassword(email: email, password: password);
 
-      final user = userCredentials.user!;
-      return UserModel.fromFirebaseUser(user).toRight();
+      final user = UserModel.fromFirebaseUser(userCredentials.user!);
+      await saveUser(user);
+      return user.toRight();
     });
   }
 
@@ -49,8 +57,35 @@ class AuthService implements IAuthService {
         password: password,
       );
 
-      final user = userCredantials.user!;
-      return UserModel.fromFirebaseUser(user).toRight();
+      final user = await fetchUser(uid: userCredantials.user!.uid);
+      final response = user.fold(
+        (l) => throw l,
+        (r) => r,
+      );
+      return response!.toRight(); //TODO
+    });
+  }
+
+  @override
+  Future<Either<Exception, void>> saveUser(UserModel user) {
+    return _errorWrapper(() async {
+      final userUID = _firebaseAuth.currentUser?.uid;
+      await FirebaseCollections.users.collectionRef
+          .doc(userUID)
+          .set(user.toMap());
+      return user.toMap().toRight();
+    });
+  }
+
+  @override
+  Future<Either<Exception, UserModel?>> fetchUser({String? uid}) {
+    return _errorWrapper(() async {
+      final userUID = uid ?? _firebaseAuth.currentUser?.uid;
+      final user =
+          await FirebaseCollections.users.collectionRef.doc(userUID).get();
+      final result =
+          user.data() == null ? null : UserModel.fromMap(user.data()!);
+      return result.toRight();
     });
   }
 
@@ -67,6 +102,7 @@ class AuthService implements IAuthService {
     try {
       return await function();
     } on FirebaseAuthException catch (e) {
+      logger.d(e);
       return left(e);
     } catch (e) {
       logger.d(e);

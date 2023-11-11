@@ -4,10 +4,13 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:ieee_event_app/logic/models/user_model.dart';
 import 'package:ieee_event_app/logic/services/auth/auth_service.dart';
 
+import 'mock.dart';
+
 void main() {
   late IAuthService authService;
 
   setUp(() {
+    setupFirebaseAuthMocks();
     authService = AuthService();
   });
 

@@ -24,6 +24,7 @@ class AuthStateListenerWrapper extends StatefulWidget {
 
 class _AuthStateListenerWrapperState extends State<AuthStateListenerWrapper> {
   late final StreamSubscription<User?> _userStateSubscription;
+  late final UserModel? user;
 
   @override
   void initState() {
@@ -36,16 +37,16 @@ class _AuthStateListenerWrapperState extends State<AuthStateListenerWrapper> {
       unauthenticated: () => true,
     );
 
-    _userStateSubscription =
-        FirebaseAuth.instance.userChanges().listen((fbUser) {
-      if (fbUser != null && !isNoneUser) {
-        final user = UserModel.fromFirebaseUser(fbUser);
-        userBloc.add(UserEvent.registerUser(user: user));
-        homeBloc.add(const HomeEvent.fetchHomeData());
-      } else {
-        userBloc.add(const UserEvent.unregisterUser());
-      }
-    });
+    user = FirebaseAuth.instance.currentUser != null
+        ? UserModel.fromFirebaseUser(FirebaseAuth.instance.currentUser!)
+        : null;
+
+    if (user != null && !isNoneUser) {
+      userBloc.add(UserEvent.registerUser(user: user!));
+      homeBloc.add(const HomeEvent.fetchHomeData());
+    } else {
+      userBloc.add(const UserEvent.unregisterUser());
+    }
   }
 
   @override

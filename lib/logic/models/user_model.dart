@@ -6,17 +6,17 @@ import 'package:ieee_event_app/core/enums/user_role_enum.dart';
 
 class UserModel {
   const UserModel({
-    required this.name,
-    required this.email,
-    required this.uid,
-    required this.role,
-    required this.token,
+     this.name,
+     this.email,
+     this.uid,
+     this.role,
+     this.token,
   });
-  final String name;
-  final String email;
-  final String uid;
-  final EUserRole role;
-  final String token;
+  final String? name;
+  final String? email;
+  final String? uid;
+  final EUserRole? role;
+  final String? token;
 
   @override
   String toString() {
@@ -44,11 +44,11 @@ class UserModel {
 
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
-      'name': name,
-      'email': email,
-      'uid': uid,
-      'role': role.name,
-      'token': token,
+      'name': name ??'',
+      'email': email??'',
+      'uid': uid??'',
+      'role': role?.name??'',
+      'token': token??'',
     };
   }
 
@@ -69,7 +69,7 @@ class UserModel {
       name: fbUser.displayName ?? '',
       email: fbUser.email ?? '',
       uid: fbUser.uid,
-      role: EUserRole.admin,
+      role: EUserRole.user,
       token: '',
     );
   }

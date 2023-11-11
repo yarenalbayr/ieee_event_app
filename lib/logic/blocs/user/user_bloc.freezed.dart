@@ -15,6 +15,301 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
+mixin _$UserEvent {
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(UserModel user) registerUser,
+    required TResult Function() unregisterUser,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(UserModel user)? registerUser,
+    TResult? Function()? unregisterUser,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(UserModel user)? registerUser,
+    TResult Function()? unregisterUser,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_RegisterUser value) registerUser,
+    required TResult Function(_UnregisterUser value) unregisterUser,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_RegisterUser value)? registerUser,
+    TResult? Function(_UnregisterUser value)? unregisterUser,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_RegisterUser value)? registerUser,
+    TResult Function(_UnregisterUser value)? unregisterUser,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $UserEventCopyWith<$Res> {
+  factory $UserEventCopyWith(UserEvent value, $Res Function(UserEvent) then) =
+      _$UserEventCopyWithImpl<$Res, UserEvent>;
+}
+
+/// @nodoc
+class _$UserEventCopyWithImpl<$Res, $Val extends UserEvent>
+    implements $UserEventCopyWith<$Res> {
+  _$UserEventCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+}
+
+/// @nodoc
+abstract class _$$_RegisterUserCopyWith<$Res> {
+  factory _$$_RegisterUserCopyWith(
+          _$_RegisterUser value, $Res Function(_$_RegisterUser) then) =
+      __$$_RegisterUserCopyWithImpl<$Res>;
+  @useResult
+  $Res call({UserModel user});
+}
+
+/// @nodoc
+class __$$_RegisterUserCopyWithImpl<$Res>
+    extends _$UserEventCopyWithImpl<$Res, _$_RegisterUser>
+    implements _$$_RegisterUserCopyWith<$Res> {
+  __$$_RegisterUserCopyWithImpl(
+      _$_RegisterUser _value, $Res Function(_$_RegisterUser) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? user = null,
+  }) {
+    return _then(_$_RegisterUser(
+      user: null == user
+          ? _value.user
+          : user // ignore: cast_nullable_to_non_nullable
+              as UserModel,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_RegisterUser implements _RegisterUser {
+  const _$_RegisterUser({required this.user});
+
+  @override
+  final UserModel user;
+
+  @override
+  String toString() {
+    return 'UserEvent.registerUser(user: $user)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_RegisterUser &&
+            (identical(other.user, user) || other.user == user));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, user);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_RegisterUserCopyWith<_$_RegisterUser> get copyWith =>
+      __$$_RegisterUserCopyWithImpl<_$_RegisterUser>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(UserModel user) registerUser,
+    required TResult Function() unregisterUser,
+  }) {
+    return registerUser(user);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(UserModel user)? registerUser,
+    TResult? Function()? unregisterUser,
+  }) {
+    return registerUser?.call(user);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(UserModel user)? registerUser,
+    TResult Function()? unregisterUser,
+    required TResult orElse(),
+  }) {
+    if (registerUser != null) {
+      return registerUser(user);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_RegisterUser value) registerUser,
+    required TResult Function(_UnregisterUser value) unregisterUser,
+  }) {
+    return registerUser(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_RegisterUser value)? registerUser,
+    TResult? Function(_UnregisterUser value)? unregisterUser,
+  }) {
+    return registerUser?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_RegisterUser value)? registerUser,
+    TResult Function(_UnregisterUser value)? unregisterUser,
+    required TResult orElse(),
+  }) {
+    if (registerUser != null) {
+      return registerUser(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _RegisterUser implements UserEvent {
+  const factory _RegisterUser({required final UserModel user}) =
+      _$_RegisterUser;
+
+  UserModel get user;
+  @JsonKey(ignore: true)
+  _$$_RegisterUserCopyWith<_$_RegisterUser> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$_UnregisterUserCopyWith<$Res> {
+  factory _$$_UnregisterUserCopyWith(
+          _$_UnregisterUser value, $Res Function(_$_UnregisterUser) then) =
+      __$$_UnregisterUserCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$_UnregisterUserCopyWithImpl<$Res>
+    extends _$UserEventCopyWithImpl<$Res, _$_UnregisterUser>
+    implements _$$_UnregisterUserCopyWith<$Res> {
+  __$$_UnregisterUserCopyWithImpl(
+      _$_UnregisterUser _value, $Res Function(_$_UnregisterUser) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$_UnregisterUser implements _UnregisterUser {
+  const _$_UnregisterUser();
+
+  @override
+  String toString() {
+    return 'UserEvent.unregisterUser()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$_UnregisterUser);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(UserModel user) registerUser,
+    required TResult Function() unregisterUser,
+  }) {
+    return unregisterUser();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(UserModel user)? registerUser,
+    TResult? Function()? unregisterUser,
+  }) {
+    return unregisterUser?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(UserModel user)? registerUser,
+    TResult Function()? unregisterUser,
+    required TResult orElse(),
+  }) {
+    if (unregisterUser != null) {
+      return unregisterUser();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_RegisterUser value) registerUser,
+    required TResult Function(_UnregisterUser value) unregisterUser,
+  }) {
+    return unregisterUser(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_RegisterUser value)? registerUser,
+    TResult? Function(_UnregisterUser value)? unregisterUser,
+  }) {
+    return unregisterUser?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_RegisterUser value)? registerUser,
+    TResult Function(_UnregisterUser value)? unregisterUser,
+    required TResult orElse(),
+  }) {
+    if (unregisterUser != null) {
+      return unregisterUser(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _UnregisterUser implements UserEvent {
+  const factory _UnregisterUser() = _$_UnregisterUser;
+}
+
+/// @nodoc
 mixin _$UserState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
@@ -745,299 +1040,4 @@ abstract class _Error implements UserState {
   @JsonKey(ignore: true)
   _$$_ErrorCopyWith<_$_Error> get copyWith =>
       throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-mixin _$UserEvent {
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(UserModel user) registerUser,
-    required TResult Function() unregisterUser,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(UserModel user)? registerUser,
-    TResult? Function()? unregisterUser,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(UserModel user)? registerUser,
-    TResult Function()? unregisterUser,
-    required TResult orElse(),
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_RegisterUser value) registerUser,
-    required TResult Function(_UnregisterUser value) unregisterUser,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_RegisterUser value)? registerUser,
-    TResult? Function(_UnregisterUser value)? unregisterUser,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_RegisterUser value)? registerUser,
-    TResult Function(_UnregisterUser value)? unregisterUser,
-    required TResult orElse(),
-  }) =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class $UserEventCopyWith<$Res> {
-  factory $UserEventCopyWith(UserEvent value, $Res Function(UserEvent) then) =
-      _$UserEventCopyWithImpl<$Res, UserEvent>;
-}
-
-/// @nodoc
-class _$UserEventCopyWithImpl<$Res, $Val extends UserEvent>
-    implements $UserEventCopyWith<$Res> {
-  _$UserEventCopyWithImpl(this._value, this._then);
-
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
-}
-
-/// @nodoc
-abstract class _$$_RegisterUserCopyWith<$Res> {
-  factory _$$_RegisterUserCopyWith(
-          _$_RegisterUser value, $Res Function(_$_RegisterUser) then) =
-      __$$_RegisterUserCopyWithImpl<$Res>;
-  @useResult
-  $Res call({UserModel user});
-}
-
-/// @nodoc
-class __$$_RegisterUserCopyWithImpl<$Res>
-    extends _$UserEventCopyWithImpl<$Res, _$_RegisterUser>
-    implements _$$_RegisterUserCopyWith<$Res> {
-  __$$_RegisterUserCopyWithImpl(
-      _$_RegisterUser _value, $Res Function(_$_RegisterUser) _then)
-      : super(_value, _then);
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? user = null,
-  }) {
-    return _then(_$_RegisterUser(
-      user: null == user
-          ? _value.user
-          : user // ignore: cast_nullable_to_non_nullable
-              as UserModel,
-    ));
-  }
-}
-
-/// @nodoc
-
-class _$_RegisterUser implements _RegisterUser {
-  const _$_RegisterUser({required this.user});
-
-  @override
-  final UserModel user;
-
-  @override
-  String toString() {
-    return 'UserEvent.registerUser(user: $user)';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$_RegisterUser &&
-            (identical(other.user, user) || other.user == user));
-  }
-
-  @override
-  int get hashCode => Object.hash(runtimeType, user);
-
-  @JsonKey(ignore: true)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$_RegisterUserCopyWith<_$_RegisterUser> get copyWith =>
-      __$$_RegisterUserCopyWithImpl<_$_RegisterUser>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(UserModel user) registerUser,
-    required TResult Function() unregisterUser,
-  }) {
-    return registerUser(user);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(UserModel user)? registerUser,
-    TResult? Function()? unregisterUser,
-  }) {
-    return registerUser?.call(user);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(UserModel user)? registerUser,
-    TResult Function()? unregisterUser,
-    required TResult orElse(),
-  }) {
-    if (registerUser != null) {
-      return registerUser(user);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_RegisterUser value) registerUser,
-    required TResult Function(_UnregisterUser value) unregisterUser,
-  }) {
-    return registerUser(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_RegisterUser value)? registerUser,
-    TResult? Function(_UnregisterUser value)? unregisterUser,
-  }) {
-    return registerUser?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_RegisterUser value)? registerUser,
-    TResult Function(_UnregisterUser value)? unregisterUser,
-    required TResult orElse(),
-  }) {
-    if (registerUser != null) {
-      return registerUser(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _RegisterUser implements UserEvent {
-  const factory _RegisterUser({required final UserModel user}) =
-      _$_RegisterUser;
-
-  UserModel get user;
-  @JsonKey(ignore: true)
-  _$$_RegisterUserCopyWith<_$_RegisterUser> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class _$$_UnregisterUserCopyWith<$Res> {
-  factory _$$_UnregisterUserCopyWith(
-          _$_UnregisterUser value, $Res Function(_$_UnregisterUser) then) =
-      __$$_UnregisterUserCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$_UnregisterUserCopyWithImpl<$Res>
-    extends _$UserEventCopyWithImpl<$Res, _$_UnregisterUser>
-    implements _$$_UnregisterUserCopyWith<$Res> {
-  __$$_UnregisterUserCopyWithImpl(
-      _$_UnregisterUser _value, $Res Function(_$_UnregisterUser) _then)
-      : super(_value, _then);
-}
-
-/// @nodoc
-
-class _$_UnregisterUser implements _UnregisterUser {
-  const _$_UnregisterUser();
-
-  @override
-  String toString() {
-    return 'UserEvent.unregisterUser()';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_UnregisterUser);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(UserModel user) registerUser,
-    required TResult Function() unregisterUser,
-  }) {
-    return unregisterUser();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(UserModel user)? registerUser,
-    TResult? Function()? unregisterUser,
-  }) {
-    return unregisterUser?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(UserModel user)? registerUser,
-    TResult Function()? unregisterUser,
-    required TResult orElse(),
-  }) {
-    if (unregisterUser != null) {
-      return unregisterUser();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_RegisterUser value) registerUser,
-    required TResult Function(_UnregisterUser value) unregisterUser,
-  }) {
-    return unregisterUser(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_RegisterUser value)? registerUser,
-    TResult? Function(_UnregisterUser value)? unregisterUser,
-  }) {
-    return unregisterUser?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_RegisterUser value)? registerUser,
-    TResult Function(_UnregisterUser value)? unregisterUser,
-    required TResult orElse(),
-  }) {
-    if (unregisterUser != null) {
-      return unregisterUser(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _UnregisterUser implements UserEvent {
-  const factory _UnregisterUser() = _$_UnregisterUser;
 }
