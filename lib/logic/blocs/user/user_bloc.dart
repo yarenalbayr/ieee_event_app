@@ -20,11 +20,15 @@ class UserBloc extends Bloc<UserEvent, UserState> {
 
   final IAuthService _authService;
 
-  FutureOr<void> _onRegisterUser(
+  Future<FutureOr<void>> _onRegisterUser(
     _RegisterUser event,
     Emitter<UserState> emit,
-  ) {
-    emit(UserState.success(user: event.user));
+  ) async {
+    final response = await _authService.fetchUser();
+    response.fold(
+      (l) => emit(UserState.error(message: l.toString())),
+      (r) => emit(UserState.success(user: r!)),//TODO
+    );
   }
 
   FutureOr<void> _onUnregisterUser(

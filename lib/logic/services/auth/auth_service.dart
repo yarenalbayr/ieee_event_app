@@ -19,11 +19,11 @@ abstract class IAuthService {
 
   Future<Either<Exception, void>> signOut();
 
-  //checks if user exist on database
-  Future<Either<Exception, bool>> checkUser();
-
   //saves user to database
   Future<Either<Exception, void>> saveUser(UserModel user);
+
+  //fetch user, return null if not exist
+  Future<Either<Exception, UserModel?>> fetchUser({String? uid});
 }
 
 final class AuthService implements IAuthService {
@@ -40,8 +40,9 @@ final class AuthService implements IAuthService {
       final userCredentials = await _firebaseAuth
           .createUserWithEmailAndPassword(email: email, password: password);
 
-      final user = userCredentials.user!;
-      return UserModel.fromFirebaseUser(user).toRight();
+      final user = UserModel.fromFirebaseUser(userCredentials.user!);
+      await saveUser(user);
+      return user.toRight();
     });
   }
 
@@ -56,21 +57,12 @@ final class AuthService implements IAuthService {
         password: password,
       );
 
-      final user = userCredantials.user!;
-      return UserModel.fromFirebaseUser(user).toRight();
-    });
-  }
-
-  @override
-  Future<Either<Exception, bool>> checkUser() {
-    return _errorWrapper(() async {
-      final userUID = _firebaseAuth.currentUser?.uid;
-      final userExists = await FirebaseCollections.users.collectionRef
-          .doc(userUID)
-          .get()
-          .then((value) => value.exists);
-
-      return userExists.toRight();
+      final user = await fetchUser(uid: userCredantials.user!.uid);
+      final response = user.fold(
+        (l) => throw l,
+        (r) => r,
+      );
+      return response!.toRight(); //TODO
     });
   }
 
@@ -82,6 +74,18 @@ final class AuthService implements IAuthService {
           .doc(userUID)
           .set(user.toMap());
       return user.toMap().toRight();
+    });
+  }
+
+  @override
+  Future<Either<Exception, UserModel?>> fetchUser({String? uid}) {
+    return _errorWrapper(() async {
+      final userUID = uid ?? _firebaseAuth.currentUser?.uid;
+      final user =
+          await FirebaseCollections.users.collectionRef.doc(userUID).get();
+      final result =
+          user.data() == null ? null : UserModel.fromMap(user.data()!);
+      return result.toRight();
     });
   }
 
@@ -98,6 +102,7 @@ final class AuthService implements IAuthService {
     try {
       return await function();
     } on FirebaseAuthException catch (e) {
+      logger.d(e);
       return left(e);
     } catch (e) {
       logger.d(e);
