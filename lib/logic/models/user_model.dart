@@ -2,15 +2,16 @@
 import 'dart:convert';
 
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:ieee_event_app/core/constants/user_role_constants.dart';
 import 'package:ieee_event_app/core/enums/user_role_enum.dart';
 
-class UserModel {
+final class UserModel{
   const UserModel({
-     this.name,
-     this.email,
-     this.uid,
-     this.role,
-     this.token,
+    this.name,
+    this.email,
+    this.uid,
+    this.role,
+    this.token,
   });
   final String? name;
   final String? email;
@@ -44,11 +45,11 @@ class UserModel {
 
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
-      'name': name ??'',
-      'email': email??'',
-      'uid': uid??'',
-      'role': role?.name??'',
-      'token': token??'',
+      'name': name ?? '',
+      'email': email ?? '',
+      'uid': uid ?? '',
+      'role': role?.name ?? '',
+      'token': token ?? '',
     };
   }
 
@@ -69,7 +70,7 @@ class UserModel {
       name: fbUser.displayName ?? '',
       email: fbUser.email ?? '',
       uid: fbUser.uid,
-      role: EUserRole.user,
+      role: UserRoleConstants.checkUserRole(email: fbUser.email),
       token: '',
     );
   }

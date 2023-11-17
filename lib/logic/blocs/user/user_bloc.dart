@@ -9,7 +9,7 @@ part 'user_bloc.freezed.dart';
 part 'user_event.dart';
 part 'user_state.dart';
 
-class UserBloc extends Bloc<UserEvent, UserState> {
+final class UserBloc extends Bloc<UserEvent, UserState> {
   UserBloc({
     required IAuthService authService,
   })  : _authService = authService,
@@ -27,7 +27,13 @@ class UserBloc extends Bloc<UserEvent, UserState> {
     final response = await _authService.fetchUser();
     response.fold(
       (l) => emit(UserState.error(message: l.toString())),
-      (r) => emit(UserState.success(user: r!)),//TODO
+      (r) {
+        if (r == null) {
+          emit(const UserState.unauthenticated());
+          return;
+        }
+        return emit(UserState.success(user: r));
+      },
     );
   }
 

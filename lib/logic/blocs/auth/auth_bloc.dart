@@ -9,7 +9,7 @@ part 'auth_state.dart';
 part 'auth_event.dart';
 part 'auth_bloc.freezed.dart';
 
-class AuthBloc extends Bloc<AuthEvent, AuthState> {
+final class AuthBloc extends Bloc<AuthEvent, AuthState> {
   AuthBloc({
     required IAuthService authService,
     required UserBloc userBloc,

@@ -10,7 +10,7 @@ import 'package:modular_bloc_bind/modular_bloc_bind.dart';
 
 part 'auth_routes.dart';
 
-class AuthModule extends Module {
+final class AuthModule extends Module {
   @override
   List<Bind> get binds => [
         Bind<IAuthService>((i) => AuthService()),
@@ -32,6 +32,6 @@ class AuthModule extends Module {
         ChildRoute(
           _RawAuthRoutes.splash,
           child: (context, args) => const SplashView(),
-        )
+        ),
       ];
 }

@@ -19,7 +19,7 @@ abstract class IAuthService {
 
   Future<Either<Exception, void>> signOut();
 
-  //saves user to database
+  //saves user to firebase database
   Future<Either<Exception, void>> saveUser(UserModel user);
 
   //fetch user, return null if not exist
