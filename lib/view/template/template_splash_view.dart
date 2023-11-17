@@ -40,6 +40,7 @@ class _TemplateSplashViewState<B extends StateStreamable<S>, S>
       builder: (context, state) {
         final error = widget.onError(state);
         if (error != null) {
+          //TODO: add error view
           return const Center(child: Text(''));
         }
         return Scaffold(
@@ -54,7 +55,7 @@ class _TemplateSplashViewState<B extends StateStreamable<S>, S>
                 child: CircularProgressIndicator(
                   color: Colors.grey,
                 ),
-              )
+              ),
             ],
           ),
         );

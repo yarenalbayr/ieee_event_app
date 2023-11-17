@@ -99,3 +99,28 @@ mixin ValidatorsMixins {
     return validator();
   }
 }
+
+
+
+mixin PasswordMixin on ValidatorsMixins {
+  String? isValidPassword(String? text) {
+    return combineValidators([
+      () => lenghtHasToBeAtLeast(8, text),
+      () => needsToMatchRegex(
+            RegExp('(?=.*?[a-zA-Z])'),
+            text,
+            'Needs to contain at least one character',
+          ),
+      () => needsToMatchRegex(
+            RegExp(r'.*\d'),
+            text,
+            'Needs to contain at least one number',
+          ),
+      () => needsToMatchRegex(
+            RegExp(r'(?=.*?[#?!@$%^&*-])'),
+            text,
+            'Needs to contain at least one special character',
+          ),
+    ]);
+  }
+}
