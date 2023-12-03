@@ -5,10 +5,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:ieee_event_app/core/navigation/navigation_extension.dart';
-import 'package:ieee_event_app/logic/blocs/home/home_bloc.dart';
+
 import 'package:ieee_event_app/logic/blocs/user/user_bloc.dart';
 import 'package:ieee_event_app/logic/models/user_model.dart';
 import 'package:ieee_event_app/view/auth/core/navigation/auth_module.dart';
+import 'package:ieee_event_app/view/home/core/navigation/home_module.dart';
 
 ///Listens to state changes of user from firebase if user is null navigates to
 ///login if user exist navigates to home view
@@ -30,7 +31,7 @@ class _AuthStateListenerWrapperState extends State<AuthStateListenerWrapper> {
   void initState() {
     super.initState();
     final userBloc = context.get<UserBloc>();
-    final homeBloc = context.get<HomeBloc>();
+    // final homeBloc = context.get<HomeBloc>();
 
     final isNoneUser = userBloc.state.maybeWhen(
       orElse: () => false,
@@ -43,7 +44,7 @@ class _AuthStateListenerWrapperState extends State<AuthStateListenerWrapper> {
 
     if (user != null && !isNoneUser) {
       userBloc.add(UserEvent.registerUser(user: user!));
-      homeBloc.add(const HomeEvent.fetchHomeData());
+      // homeBloc.add(const HomeEvent.fetchHomeData());
     } else {
       userBloc.add(const UserEvent.unregisterUser());
     }
@@ -55,22 +56,11 @@ class _AuthStateListenerWrapperState extends State<AuthStateListenerWrapper> {
       bloc: context.get<UserBloc>(),
       listener: (context, state) {
         state.mapOrNull(
-          unauthenticated: (value) {
-            Modular.to.navigate(AuthRoutes.loginView);
-          },
+          unauthenticated: (value) => Modular.to.navigate(AuthRoutes.loginView),
+          success: (value) =>Modular.to.navigate(HomeRoutes.splash),
         );
       },
-      child: BlocListener<HomeBloc, HomeState>(
-        bloc: context.get<HomeBloc>(),
-        listener: (context, state) {
-          state.mapOrNull(
-            success: (value) {
-              Modular.to.navigate(AuthRoutes.splashView);
-            },
-          );
-        },
-        child: widget.child,
-      ),
+      child: widget.child,
     );
   }
 

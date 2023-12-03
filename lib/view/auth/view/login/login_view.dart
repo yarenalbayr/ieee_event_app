@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:ieee_event_app/core/mixins/loading_mixin.dart';
 import 'package:ieee_event_app/core/navigation/navigation_extension.dart';
 import 'package:ieee_event_app/logic/blocs/auth/auth_bloc.dart';
+
 part 'login_view_mixin.dart';
 
 class LoginView extends StatefulWidget {
@@ -10,7 +12,8 @@ class LoginView extends StatefulWidget {
   State<LoginView> createState() => _LoginViewState();
 }
 
-class _LoginViewState extends State<LoginView> with LoginViewMixin {
+class _LoginViewState extends State<LoginView>
+    with LoginViewMixin, LoadingMixin {
   @override
   Widget build(BuildContext context) {
     final authBloc = context.get<AuthBloc>();

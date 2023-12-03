@@ -70,7 +70,7 @@ final class AuthService implements IAuthService {
   Future<Either<Exception, void>> saveUser(UserModel user) {
     return _errorWrapper(() async {
       final userUID = _firebaseAuth.currentUser?.uid;
-      await FirebaseCollections.users.collectionRef
+      await FirebaseCollections.users.collectionReference
           .doc(userUID)
           .set(user.toMap());
       return user.toMap().toRight();
@@ -81,8 +81,9 @@ final class AuthService implements IAuthService {
   Future<Either<Exception, UserModel?>> fetchUser({String? uid}) {
     return _errorWrapper(() async {
       final userUID = uid ?? _firebaseAuth.currentUser?.uid;
-      final user =
-          await FirebaseCollections.users.collectionRef.doc(userUID).get();
+      final user = await FirebaseCollections.users.collectionReference
+          .doc(userUID)
+          .get();
       final result =
           user.data() == null ? null : UserModel.fromMap(user.data()!);
       return result.toRight();

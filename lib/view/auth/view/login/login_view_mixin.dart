@@ -4,7 +4,7 @@ mixin LoginViewMixin on State<LoginView>{
   final _formKey = GlobalKey<FormState>();
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
-
+  
 
   @override
   void dispose() {
