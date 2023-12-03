@@ -8,6 +8,7 @@ final class UserRoleConstants {
 
   static List<String> get _comitteeEmails =>
       List.from(ECommittees.values.map((e) => '{e.name}$_email'));
+      
   static String get _adminEmail => 'admin$_email';
 
   static EUserRole checkUserRole({required String? email}) {
@@ -19,4 +20,4 @@ final class UserRoleConstants {
             : EUserRole.user);
   }
 }
-//TODO: adding passwords too for controlling and encrypting the data
+//TODO: adding passwords too for controlling, encrypt the data

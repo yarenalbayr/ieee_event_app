@@ -4,12 +4,11 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:ieee_event_app/core/configurations/app_init.dart';
 import 'package:ieee_event_app/core/configurations/localization/localization.dart';
 import 'package:ieee_event_app/core/navigation/app_modules.dart';
-import 'package:ieee_event_app/view/auth/core/navigation/auth_module.dart';
 import 'package:ieee_event_app/view/auth/view/auth_state_listener.dart';
+import 'package:ieee_event_app/view/home/core/navigation/home_module.dart';
 
 Future<void> main() async {
   await ApplicationInit.init();
-
   runApp(
     ModularApp(
       module: AppModules(),
@@ -25,7 +24,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Modular.setInitialRoute(AuthRoutes.loginView);
+    Modular.setInitialRoute(HomeRoutes.splash);
     return MaterialApp.router(
       routeInformationParser: Modular.routeInformationParser,
       routerDelegate: Modular.routerDelegate,

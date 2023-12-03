@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:ieee_event_app/core/navigation/navigation_extension.dart';
-import 'package:ieee_event_app/logic/blocs/home/home_bloc.dart';
-import 'package:ieee_event_app/view/home/core/navigation/home_routes.dart';
+import 'package:ieee_event_app/logic/blocs/event/event_bloc.dart';
+import 'package:ieee_event_app/view/home/core/navigation/home_module.dart';
 import 'package:ieee_event_app/view/template/template_splash_view.dart';
 
 class SplashView extends StatelessWidget {
@@ -10,17 +10,16 @@ class SplashView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final homeBloc = context.get<HomeBloc>();
-    return TemplateSplashView<HomeBloc, HomeState>(
-      onError: (s) => s.mapOrNull(
-        error: (value) => value.exception,
-      ),
+    final eventBloc = context.get<EventBloc>();
+    return TemplateSplashView<EventBloc, EventState>(
+      onError: (s) => s.mapOrNull(),
       onFetch: () {
-        homeBloc.add(const HomeEvent.fetchHomeData());
+        eventBloc.add(const EventEvent.fetchEvents());
       },
       onStateChange: (state) {
         state.mapOrNull(
-          success: (value) => Modular.to.navigate(HomeRoutes.moduleName),
+          fetched: (value) =>
+              Modular.to.pushReplacementNamed(HomeRoutes.homeRoute),
         );
       },
     );
