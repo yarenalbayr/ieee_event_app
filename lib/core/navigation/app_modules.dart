@@ -2,10 +2,12 @@
 
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:ieee_event_app/logic/blocs/event/event_bloc.dart';
+import 'package:ieee_event_app/logic/blocs/nav_bar_cubit.dart';
 import 'package:ieee_event_app/logic/blocs/user/user_bloc.dart';
 import 'package:ieee_event_app/logic/services/auth/auth_service.dart';
 import 'package:ieee_event_app/logic/services/event/event_service.dart';
 import 'package:ieee_event_app/view/auth/core/navigation/auth_module.dart';
+import 'package:ieee_event_app/view/dashboard/core/dashboard_module.dart';
 import 'package:ieee_event_app/view/home/core/navigation/home_module.dart';
 import 'package:modular_bloc_bind/modular_bloc_bind.dart';
 
@@ -21,6 +23,7 @@ class AppModules extends Module {
             eventService: i.get<IEventService>(),
           ),
         ),
+         Bind.lazySingleton((i) => NavBarCubit()),
     ];
   }
 
@@ -31,10 +34,9 @@ class AppModules extends Module {
         AuthRoutes.moduleName,
         module: AuthModule(),
       ),
-
       ModuleRoute(
-        HomeRoutes.moduleName,
-        module: HomeModule(),
+        DashboardRoutes.moduleName,
+        module:DashboardModule(),
       ),
     ];
   }

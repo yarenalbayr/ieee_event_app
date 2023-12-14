@@ -1,7 +1,6 @@
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:ieee_event_app/logic/blocs/event/event_bloc.dart';
 import 'package:ieee_event_app/logic/services/event/event_service.dart';
-import 'package:ieee_event_app/view/auth/view/splash_view.dart';
 import 'package:ieee_event_app/view/home/view/home_view.dart';
 import 'package:modular_bloc_bind/modular_bloc_bind.dart';
 
@@ -20,12 +19,8 @@ class HomeModule extends Module {
 
   @override
   List<ModularRoute> get routes => [
-        ChildRoute<SplashView>(
-          _RawHomeRoutes.splash,
-          child: (context, args) => const SplashView(),
-        ),
         ChildRoute<HomeView>(
-          _RawHomeRoutes.homeRoute,
+        Modular.initialRoute,
           child: (context, args) => const HomeView(),
         ),
       ];

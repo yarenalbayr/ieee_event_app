@@ -8,5 +8,8 @@ abstract class  LocaleKeys {
   static const auth_sign_up = 'auth.sign_up';
   static const auth_already_have_account = 'auth.already_have_account';
   static const auth = 'auth';
+  static const common_fail = 'common.fail';
+  static const common_loading = 'common.loading';
+  static const common = 'common';
 
 }

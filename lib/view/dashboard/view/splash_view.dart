@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:ieee_event_app/core/navigation/navigation_extension.dart';
 import 'package:ieee_event_app/logic/blocs/event/event_bloc.dart';
-import 'package:ieee_event_app/view/home/core/navigation/home_module.dart';
+import 'package:ieee_event_app/view/dashboard/core/dashboard_module.dart';
 import 'package:ieee_event_app/view/template/template_splash_view.dart';
 
 class SplashView extends StatelessWidget {
@@ -19,7 +19,7 @@ class SplashView extends StatelessWidget {
       onStateChange: (state) {
         state.mapOrNull(
           fetched: (value) =>
-              Modular.to.pushReplacementNamed(HomeRoutes.homeRoute),
+              Modular.to.pushReplacementNamed(DashboardRoutes.main),
         );
       },
     );

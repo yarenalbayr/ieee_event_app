@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
-import 'package:ieee_event_app/core/extensions/index.dart';
 import 'package:ieee_event_app/core/navigation/navigation_extension.dart';
+import 'package:ieee_event_app/view/shared/loading_widget.dart';
 
 class TemplateSplashView<B extends StateStreamable<S>, S>
     extends StatefulWidget {
@@ -43,21 +42,8 @@ class _TemplateSplashViewState<B extends StateStreamable<S>, S>
           //TODO: add error view
           return const Center(child: Text(''));
         }
-        return Scaffold(
-          body: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              const Text(
-                '',
-              ),
-              SizedBox(height: context.height * 0.1),
-              const Center(
-                child: CircularProgressIndicator(
-                  color: Colors.grey,
-                ),
-              ),
-            ],
-          ),
+        return const Scaffold(
+          body: LoadingWidget(),
         );
       },
     );

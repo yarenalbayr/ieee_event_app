@@ -5,11 +5,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:ieee_event_app/core/navigation/navigation_extension.dart';
-
 import 'package:ieee_event_app/logic/blocs/user/user_bloc.dart';
 import 'package:ieee_event_app/logic/models/user_model.dart';
 import 'package:ieee_event_app/view/auth/core/navigation/auth_module.dart';
-import 'package:ieee_event_app/view/home/core/navigation/home_module.dart';
+import 'package:ieee_event_app/view/dashboard/core/dashboard_module.dart';
 
 ///Listens to state changes of user from firebase if user is null navigates to
 ///login if user exist navigates to home view
@@ -57,7 +56,7 @@ class _AuthStateListenerWrapperState extends State<AuthStateListenerWrapper> {
       listener: (context, state) {
         state.mapOrNull(
           unauthenticated: (value) => Modular.to.navigate(AuthRoutes.loginView),
-          success: (value) =>Modular.to.navigate(HomeRoutes.splash),
+          success: (value) => Modular.to.navigate(DashboardRoutes.splash),
         );
       },
       child: widget.child,

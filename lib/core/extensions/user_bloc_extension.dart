@@ -8,9 +8,9 @@ extension UserExtension on BuildContext {
     return get<UserBloc>().state.map(
           success: (value) => value.user,
           unauthenticated: (value) => throw Exception('User not logged in'),
-          error: (value) => throw Exception('User not logged in'),
-          loading: (value) => throw Exception('User not logged in'),
-          initial: (value) => throw Exception('User not logged in'),
+          error: (value) => throw Exception('Error'),
+          loading: (value) => throw Exception('Loading'),
+          initial: (value) => throw Exception('Initial'),
         );
   }
 
