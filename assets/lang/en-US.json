@@ -1,10 +1,14 @@
 {
-    "auth":{
+    "auth": {
         "login": "Login",
         "email": "Email",
         "password": "Password",
         "dont_have_account": "Don't have an account?",
         "sign_up": "Sign up",
         "already_have_account": "Already have an account?"
+    },
+    "common": {
+        "fail": "Something went wrong",
+        "loading": "Loading..."
     }
 }

@@ -229,3 +229,46 @@ class RawAuthRoutes {
 > To use the dependency:</br>
 > final userBloc = context.get\<UserBloc>();
 
+
+## Localization
+
+We'll use Easy Localization package for localize our strings in the app.
+
+On the asset/lang folder inside en-US.json file we should add the string variable name and what it refers to.
+
+Then we should run a script to generate strings from that json file.
+
+I have added scripts/localization.sh folder to make it easy to run the generator function
+
+We can run it with:
+
+```
+sh scripts/localization.sh
+```
+
+Then it automaticaly generates the locale strings from it to:
+lib/core/configurations/localization/locale_keys.g.dart
+
+
+To use it through the app we run:
+```dart 
+Text(LocaleKeys.myYodl.locale)
+```
+
+
+LocalizationManager holds the supported languages in it, to change the localization we call:
+
+```dart
+  context.locale = LanguageManager.instance.enLocale
+```
+
+We can also create linked translations like so:
+```dart
+{
+  "example": {
+    "hello": "Hello",
+    "world": "World!",
+    "helloWorld": "@:example.hello @:example.world"
+  }
+}
+```

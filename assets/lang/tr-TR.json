@@ -6,5 +6,9 @@
         "dont_have_account": "Hesabın yok mu?",
         "sign_up": "Kayıt ol",
         "already_have_account": "Hesabın var mı?"
+    },
+    "common": {
+        "fail": "Bir hata oluştu",
+        "loading": "Yükleniyor..."
     }
 }
