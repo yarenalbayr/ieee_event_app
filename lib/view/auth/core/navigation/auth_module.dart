@@ -5,6 +5,8 @@ import 'package:ieee_event_app/logic/blocs/user/user_bloc.dart';
 import 'package:ieee_event_app/logic/services/auth/auth_service.dart';
 import 'package:ieee_event_app/logic/services/event/event_service.dart';
 import 'package:ieee_event_app/view/auth/view/login/login_view.dart';
+import 'package:ieee_event_app/view/auth/view/sign_up/sign_up_view.dart';
+import 'package:ieee_event_app/view/initial/splash_view.dart';
 import 'package:modular_bloc_bind/modular_bloc_bind.dart';
 
 part 'auth_routes.dart';
@@ -33,6 +35,14 @@ final class AuthModule extends Module {
         ChildRoute<LoginView>(
           _RawAuthRoutes.login,
           child: (context, args) => const LoginView(),
+        ),
+        ChildRoute<SignUpView>(
+          _RawAuthRoutes.signUp,
+          child: (context, args) => const SignUpView(),
+        ),
+        ChildRoute<LoginView>(
+          _RawAuthRoutes.splash,
+          child: (context, args) => const SplashView(),
         ),
       ];
 }

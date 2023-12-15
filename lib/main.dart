@@ -5,8 +5,7 @@ import 'package:ieee_event_app/core/configurations/app_init.dart';
 import 'package:ieee_event_app/core/configurations/localization/localization.dart';
 import 'package:ieee_event_app/core/constants/theme/theme.dart';
 import 'package:ieee_event_app/core/navigation/app_modules.dart';
-import 'package:ieee_event_app/view/auth/view/auth_state_listener.dart';
-import 'package:ieee_event_app/view/dashboard/core/dashboard_module.dart';
+import 'package:ieee_event_app/view/initial/auth_state_listener.dart';
 
 Future<void> main() async {
   await ApplicationInit.init();
@@ -25,7 +24,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Modular.setInitialRoute(DashboardRoutes.splash);
+    Modular.setInitialRoute(AppRoutes.splash);
     return MaterialApp.router(
       routeInformationParser: Modular.routeInformationParser,
       routerDelegate: Modular.routerDelegate,

@@ -9,6 +9,20 @@
     },
     "common": {
         "fail": "Something went wrong",
-        "loading": "Loading..."
+        "loading": "Loading...",
+        "home": "Home",
+        "profile": "Profile"
+    },
+    "home":{
+        "date": "Date",
+        "time": "Time",
+        "title": "Title",
+        "description": "Description",
+        "location": "Location",
+        "add": "Add"
+    },
+    "profile":{
+       "sign_out": "Sign out",
+       "my_events": "My events"
     }
 }
