@@ -5,6 +5,7 @@ import 'package:ieee_event_app/core/constants/theme/custom_text_theme.dart';
 extension ThemeContext on BuildContext {
   ThemeData get theme => Theme.of(this);
   TextTheme get textTheme => Theme.of(this).textTheme;
+  ColorScheme get colorScheme => Theme.of(this).colorScheme;
 }
 
 ThemeData get darkTheme => ThemeData(

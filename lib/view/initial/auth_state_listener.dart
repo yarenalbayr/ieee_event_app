@@ -1,5 +1,3 @@
-import 'dart:async';
-
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -13,9 +11,9 @@ import 'package:ieee_event_app/view/dashboard/core/dashboard_module.dart';
 ///Listens to state changes of user from firebase if user is null navigates to
 ///login if user exist navigates to home view
 class AuthStateListenerWrapper extends StatefulWidget {
-  const AuthStateListenerWrapper({required this.child, super.key});
+  const AuthStateListenerWrapper({ this.child, super.key});
 
-  final Widget child;
+  final Widget? child;
 
   @override
   State<AuthStateListenerWrapper> createState() =>
@@ -23,7 +21,6 @@ class AuthStateListenerWrapper extends StatefulWidget {
 }
 
 class _AuthStateListenerWrapperState extends State<AuthStateListenerWrapper> {
-  late final StreamSubscription<User?> _userStateSubscription;
   late final UserModel? user;
 
   @override
@@ -43,7 +40,6 @@ class _AuthStateListenerWrapperState extends State<AuthStateListenerWrapper> {
 
     if (user != null && !isNoneUser) {
       userBloc.add(UserEvent.registerUser(user: user!));
-      // homeBloc.add(const HomeEvent.fetchHomeData());
     } else {
       userBloc.add(const UserEvent.unregisterUser());
     }
@@ -59,13 +55,12 @@ class _AuthStateListenerWrapperState extends State<AuthStateListenerWrapper> {
           success: (value) => Modular.to.navigate(DashboardRoutes.splash),
         );
       },
-      child: widget.child,
+      child: widget.child??const SizedBox.shrink(),
     );
   }
 
   @override
   void dispose() {
-    _userStateSubscription.cancel();
     super.dispose();
   }
 }

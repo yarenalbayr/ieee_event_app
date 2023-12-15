@@ -5,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:ieee_event_app/core/navigation/navigation_extension.dart';
 import 'package:ieee_event_app/logic/blocs/nav_bar_cubit.dart';
+import 'package:ieee_event_app/view/shared/bottom_nav_bar.dart';
 
 class DashboardView extends StatelessWidget {
   const DashboardView({super.key});
@@ -16,19 +17,11 @@ class DashboardView extends StatelessWidget {
       builder: (context, selectedIndex) {
         return Scaffold(
           body: const RouterOutlet(),
-          bottomNavigationBar: BottomNavigationBar(
-            items: const <BottomNavigationBarItem>[
-              BottomNavigationBarItem(
-                icon: Icon(Icons.home),
-                label: 'Home',
-              ),
-              BottomNavigationBarItem(
-                icon: Icon(Icons.person),
-                label: 'Profile',
-              ),
-            ],
+          bottomNavigationBar: CustomButtomNavBar(
             currentIndex: selectedIndex,
-            onTap: (index) => context.get<NavBarCubit>().setIndex(index),
+            onPressed: (index) {
+              context.get<NavBarCubit>().setIndex(index);
+            },
           ),
         );
       },

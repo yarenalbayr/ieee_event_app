@@ -3,11 +3,9 @@
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:ieee_event_app/logic/blocs/event/event_bloc.dart';
 import 'package:ieee_event_app/logic/blocs/nav_bar_cubit.dart';
-import 'package:ieee_event_app/logic/blocs/user/user_bloc.dart';
-import 'package:ieee_event_app/logic/services/auth/auth_service.dart';
 import 'package:ieee_event_app/logic/services/event/event_service.dart';
+import 'package:ieee_event_app/view/dashboard/view/dashboard_splash_view.dart';
 import 'package:ieee_event_app/view/dashboard/view/dashboard_view.dart';
-import 'package:ieee_event_app/view/dashboard/view/splash_view.dart';
 import 'package:ieee_event_app/view/home/view/home_view.dart';
 import 'package:ieee_event_app/view/profile/view/profile_view.dart';
 import 'package:modular_bloc_bind/modular_bloc_bind.dart';
@@ -24,15 +22,13 @@ class DashboardModule extends Module {
         eventService: i.get<IEventService>(),
       ),
     ),
-    Bind<IAuthService>((i) => AuthService()),
-        BlocBind.singleton((i) => UserBloc(authService: i.get<IAuthService>())),
   ];
 
   @override
   final List<ModularRoute> routes = [
-    ChildRoute<SplashView>(
+    ChildRoute<DashboardSplashView>(
       _RawDashboardRoutes.splash,
-      child: (context, args) => const SplashView(),
+      child: (context, args) => const DashboardSplashView(),
     ),
     ChildRoute<DashboardView>(
       _RawDashboardRoutes.main,

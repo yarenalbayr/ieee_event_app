@@ -9,6 +9,20 @@
     },
     "common": {
         "fail": "Bir hata oluştu",
-        "loading": "Yükleniyor..."
+        "loading": "Yükleniyor...",
+        "home": "Ana Sayfa",
+        "profile": "Profil"
+    },
+    "home":{
+        "date": "Tarih",
+        "time": "Zaman",
+        "title": "Başlık",
+        "description": "Açıklama",
+        "location": "Konum",
+        "add": "Ekle"
+    },
+    "profile":{
+       "sign_out": "Çıkış yap",
+       "my_events": "Etkinliklerim"
     }
 }

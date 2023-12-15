@@ -4,23 +4,19 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:ieee_event_app/core/constants/index.dart';
 import 'package:ieee_event_app/core/constants/theme/theme.dart';
 import 'package:ieee_event_app/core/extensions/index.dart';
-import 'package:ieee_event_app/core/mixins/loading_mixin.dart';
 import 'package:ieee_event_app/core/navigation/navigation_extension.dart';
 import 'package:ieee_event_app/logic/blocs/auth/auth_bloc.dart';
 import 'package:ieee_event_app/view/auth/core/navigation/auth_module.dart';
 import 'package:ieee_event_app/view/dashboard/core/dashboard_module.dart';
 
-part 'login_view_mixin.dart';
-
-class LoginView extends StatefulWidget {
-  const LoginView({super.key});
+class SignUpView extends StatefulWidget {
+  const SignUpView({super.key});
 
   @override
-  State<LoginView> createState() => _LoginViewState();
+  State<SignUpView> createState() => _SignUpViewState();
 }
 
-class _LoginViewState extends State<LoginView>
-    with LoginViewMixin, LoadingMixin {
+class _SignUpViewState extends State<SignUpView> {
   @override
   Widget build(BuildContext context) {
     final authBloc = context.get<AuthBloc>();
@@ -40,7 +36,7 @@ class _LoginViewState extends State<LoginView>
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: <Widget>[
                 Text(
-                  'Login',
+                  'Sign Up',
                   style: context.textTheme.displayLarge
                       ?.copyWith(fontWeight: FontWeight.w700),
                 ),
@@ -53,12 +49,12 @@ class _LoginViewState extends State<LoginView>
                 context.sizedBoxNormal,
                 ElevatedButton(
                   onPressed: () {
-                    authBloc.add(
-                      AuthEvent.createUser(
-                        email: _emailController.text,
-                        password: _passwordController.text,
-                      ),
-                    );
+                    // authBloc.add(
+                    //   AuthEvent.createUser(
+                    //     email: _emailController.text,
+                    //     password: _passwordController.text,
+                    //   ),
+                    // );
                     // const event = UserEvent.registerUser()
                     // if (_formKey.currentState!.validate()) {
                     //   //TODO
@@ -73,9 +69,15 @@ class _LoginViewState extends State<LoginView>
                   ),
                 ),
                 TextButton(
-                  child: const Text("Already have an account? Sign up"),
+                  child: const Text('Forget Password?'),
                   onPressed: () {
-                    Modular.to.pushNamed(AuthRoutes.signUpView);
+                    // Implement password recovery logic
+                  },
+                ),
+                TextButton(
+                  child: const Text("Don't have an account? Login"),
+                  onPressed: () {
+                    Modular.to.pushNamed(AuthRoutes.loginView);
                   },
                 ),
               ],
