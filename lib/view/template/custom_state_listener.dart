@@ -3,8 +3,7 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ieee_event_app/core/navigation/navigation_extension.dart';
-import 'package:ieee_event_app/view/shared/fail_widget.dart';
-import 'package:ieee_event_app/view/shared/loading_widget.dart';
+import 'package:ieee_event_app/view/shared/components/dialogs_api/implementations/index.dart';
 
 class CustomStateListener<B extends StateStreamable<S>, S>
     extends StatelessWidget {
@@ -34,7 +33,7 @@ class CustomStateListener<B extends StateStreamable<S>, S>
         final currIsLoading = loadingState(current) != null;
         if (currIsLoading) {
           log('${B.runtimeType} Putting loading');
-          const LoadingWidget();
+          showLoadingDialog(context);
           return true;
         }
 
@@ -44,7 +43,7 @@ class CustomStateListener<B extends StateStreamable<S>, S>
 
         if (currIsError) {
           log('${B.runtimeType} Putting error dialog');
-          const FailWidget();
+          showErrorDialog(context, error);
           return true;
         }
 
@@ -53,11 +52,12 @@ class CustomStateListener<B extends StateStreamable<S>, S>
 
         if (prevIsError || prevIsLoading) {
           log('${B.runtimeType} Removing dialog');
-
+          hideCurrentDialog();
         }
 
         if (successState != null && (prevIsLoading && currIsSuccess)) {
           log('${B.runtimeType} Putting success dialog');
+          showSuccessDialog(context);
           return true;
         }
 

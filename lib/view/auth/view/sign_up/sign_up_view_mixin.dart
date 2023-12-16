@@ -1,10 +1,9 @@
-part of 'login_view.dart';
+part of 'sign_up_view.dart';
 
-mixin LoginViewMixin on State<LoginView>{
+mixin SignUpViewMixin on State<SignUpView> {
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
   final ValueNotifier<bool> _willShowPassword = ValueNotifier<bool>(false);
-
 
   @override
   void dispose() {
