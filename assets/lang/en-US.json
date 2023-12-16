@@ -1,11 +1,11 @@
 {
     "auth": {
-        "login": "Login",
+        "login": "Log in",
         "email": "Email",
         "password": "Password",
-        "dont_have_account": "Don't have an account?",
+        "dont_have_account": "Don't have an account? Sign up!",
         "sign_up": "Sign up",
-        "already_have_account": "Already have an account?"
+        "already_have_account": "Already have an account? Log in!"
     },
     "common": {
         "fail": "Something went wrong",

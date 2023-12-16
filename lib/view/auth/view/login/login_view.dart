@@ -1,14 +1,16 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:ieee_event_app/core/configurations/localization/locale_keys.g.dart';
 import 'package:ieee_event_app/core/constants/index.dart';
-import 'package:ieee_event_app/core/constants/theme/theme.dart';
 import 'package:ieee_event_app/core/extensions/index.dart';
-import 'package:ieee_event_app/core/mixins/loading_mixin.dart';
+import 'package:ieee_event_app/core/mixins/index.dart';
 import 'package:ieee_event_app/core/navigation/navigation_extension.dart';
 import 'package:ieee_event_app/logic/blocs/auth/auth_bloc.dart';
-import 'package:ieee_event_app/view/auth/core/navigation/auth_module.dart';
+import 'package:ieee_event_app/view/auth/view/auth_view.dart';
 import 'package:ieee_event_app/view/dashboard/core/dashboard_module.dart';
+import 'package:ieee_event_app/view/shared/components/custom_text_field.dart';
+import 'package:ieee_event_app/view/template/custom_state_listener.dart';
 
 part 'login_view_mixin.dart';
 
@@ -20,84 +22,54 @@ class LoginView extends StatefulWidget {
 }
 
 class _LoginViewState extends State<LoginView>
-    with LoginViewMixin, LoadingMixin {
+    with LoginViewMixin, ValidatorsMixins {
   @override
   Widget build(BuildContext context) {
     final authBloc = context.get<AuthBloc>();
-    return BlocListener<AuthBloc, AuthState>(
-      bloc: authBloc,
+    return CustomStateListener<AuthBloc, AuthState>(
+      loadingState: (s) => s.mapOrNull(loading: (s) => s),
+      errorState: (s) => s.mapOrNull(error: (s) => s.error),
       listener: (context, state) {
         state.maybeWhen(
-          success: () => Modular.to.navigate(DashboardRoutes.main),
+          success: () => Modular.to.navigate(DashboardRoutes.splash),
           orElse: () => null,
         );
       },
-      child: Scaffold(
-        body: Padding(
-          padding: context.paddingNormal,
-          child: SafeArea(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: <Widget>[
-                Text(
-                  'Login',
-                  style: context.textTheme.displayLarge
-                      ?.copyWith(fontWeight: FontWeight.w700),
-                ),
-                context.sizedBoxHigh,
-                Image.asset(AppIcons.ieeeLogoBlue),
-                context.sizedBoxHigh,
-                _buildTextField(hint: 'Email'),
-                context.sizedBoxNormal,
-                _buildTextField(hint: 'Password', obscureText: true),
-                context.sizedBoxNormal,
-                ElevatedButton(
-                  onPressed: () {
-                    authBloc.add(
-                      AuthEvent.createUser(
-                        email: _emailController.text,
-                        password: _passwordController.text,
-                      ),
-                    );
-                    // const event = UserEvent.registerUser()
-                    // if (_formKey.currentState!.validate()) {
-                    //   //TODO
-                    // }
-                  },
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: ColorConstants.primary, // Background color
-                  ),
-                  child: Text(
-                    'Login',
-                    style: context.textTheme.headlineSmall,
-                  ),
-                ),
-                TextButton(
-                  child: const Text("Already have an account? Sign up"),
-                  onPressed: () {
-                    Modular.to.pushNamed(AuthRoutes.signUpView);
-                  },
-                ),
-              ],
-            ),
+      child: AuthView(
+        pageName: LocaleKeys.auth_login,
+        onSubmit: () => authBloc.add(
+          AuthEvent.loginUser(
+            email: _emailController.text,
+            password: _passwordController.text,
           ),
         ),
+        children: [
+          context.sizedBoxHigh,
+          CustomTextField(
+            text: LocaleKeys.auth_email.tr(),
+            controller: _emailController,
+            validator: isValidEmail,
+          ),
+          context.sizedBoxNormal,
+          ValueListenableBuilder<bool>(
+            valueListenable: _willShowPassword,
+            builder: (context, value, child) => CustomTextField(
+              text: LocaleKeys.auth_password.tr(),
+              controller: _passwordController,
+              obscureText: !value,
+              validator: (text) => lenghtHasToBeAtLeast(8, text),
+              suffixIcon: IconButton(
+                icon: Icon(
+                  value ? Icons.visibility : Icons.visibility_off,
+                  color: ColorConstants.primary,
+                ),
+                onPressed: () => _willShowPassword.value = !value,
+              ),
+            ),
+          ),
+          context.sizedBoxNormal,
+        ],
       ),
-    );
-  }
-
-  Widget _buildTextField({required String hint, bool obscureText = false}) {
-    return TextField(
-      decoration: InputDecoration(
-        hintText: hint,
-        filled: true,
-        fillColor: Colors.grey[800],
-        border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(10),
-          borderSide: BorderSide.none,
-        ),
-      ),
-      obscureText: obscureText,
     );
   }
 }
