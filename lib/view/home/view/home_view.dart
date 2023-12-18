@@ -23,10 +23,7 @@ class _HomeViewState extends State<HomeView> with HomeViewMixin {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title:  Text(LocaleKeys.common_home.tr()),
-        actions: [
-          IconButton(onPressed: () {}, icon: const Icon(Icons.settings)),
-        ],
+        title: Text(LocaleKeys.common_home.tr()),
       ),
       body: BlocConsumer<EventBloc, EventState>(
         bloc: _eventBloc,
