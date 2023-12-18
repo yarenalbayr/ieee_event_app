@@ -25,7 +25,6 @@ class DashboardView extends StatefulWidget {
 class _DashboardViewState extends State<DashboardView> with DashboardViewMixin {
   @override
   Widget build(BuildContext context) {
-    final usertype = context.userCredentialsOrNull?.role;
     return BlocBuilder<NavBarCubit, int>(
       bloc: context.get<NavBarCubit>(),
       builder: (context, selectedIndex) {
