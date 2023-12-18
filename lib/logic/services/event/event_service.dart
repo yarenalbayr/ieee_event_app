@@ -41,7 +41,8 @@ class EventService extends IEventService with ErrorWrapper {
     return errorWrapper(() async {
       final eventMap = event.toMap();
       final eventRef = FirebaseCollections.events.collectionReference;
-      return eventRef.add(eventMap).toRight();
+      final docRef = await eventRef.add(eventMap);
+      return docRef.update({'id': docRef.id}).toRight();
     });
   }
 

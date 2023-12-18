@@ -34,19 +34,20 @@ final class CustomButtomNavBar extends StatelessWidget {
         currentIndex: currentIndex,
         onTap: onPressed,
         selectedItemColor: ColorConstants.primary,
+        unselectedItemColor: ColorConstants.textColorLight.withOpacity(0.4),
       ),
     );
   }
 
   static List<BottomNavigationBarItem> navBarItems = [
     BottomNavigationBarItem(
-      icon: const Icon(Icons.home),
-      activeIcon: const Icon(Icons.home_filled),
+      icon: const Icon(Icons.home_outlined),
+      activeIcon: const Icon(Icons.home_rounded),
       label: LocaleKeys.common_home.tr(),
     ),
     BottomNavigationBarItem(
-      icon: const Icon(Icons.person),
-      activeIcon: const Icon(Icons.pets_sharp),
+      icon: const Icon(Icons.person_outlined),
+      activeIcon: const Icon(Icons.person_rounded),
       label: LocaleKeys.common_profile.tr(),
     ),
   ];

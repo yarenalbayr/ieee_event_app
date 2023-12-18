@@ -15,7 +15,6 @@ final class AuthModule extends Module {
   @override
   List<Bind> get binds => [
         Bind<IAuthService>((i) => AuthService()),
-        BlocBind.singleton((i) => UserBloc(authService: i.get<IAuthService>())),
         BlocBind.singleton(
           (i) => AuthBloc(
             authService: i.get<IAuthService>(),
