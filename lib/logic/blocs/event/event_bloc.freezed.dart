@@ -645,8 +645,8 @@ mixin _$EventState {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(List<EventModel> events) fetched,
-    required TResult Function(EventModel events) uploaded,
-    required TResult Function(EventModel events) updated,
+    required TResult Function() uploaded,
+    required TResult Function(EventModel event) updated,
     required TResult Function(Exception error) error,
   }) =>
       throw _privateConstructorUsedError;
@@ -655,8 +655,8 @@ mixin _$EventState {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(List<EventModel> events)? fetched,
-    TResult? Function(EventModel events)? uploaded,
-    TResult? Function(EventModel events)? updated,
+    TResult? Function()? uploaded,
+    TResult? Function(EventModel event)? updated,
     TResult? Function(Exception error)? error,
   }) =>
       throw _privateConstructorUsedError;
@@ -665,8 +665,8 @@ mixin _$EventState {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(List<EventModel> events)? fetched,
-    TResult Function(EventModel events)? uploaded,
-    TResult Function(EventModel events)? updated,
+    TResult Function()? uploaded,
+    TResult Function(EventModel event)? updated,
     TResult Function(Exception error)? error,
     required TResult orElse(),
   }) =>
@@ -762,8 +762,8 @@ class _$_Initial implements _Initial {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(List<EventModel> events) fetched,
-    required TResult Function(EventModel events) uploaded,
-    required TResult Function(EventModel events) updated,
+    required TResult Function() uploaded,
+    required TResult Function(EventModel event) updated,
     required TResult Function(Exception error) error,
   }) {
     return initial();
@@ -775,8 +775,8 @@ class _$_Initial implements _Initial {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(List<EventModel> events)? fetched,
-    TResult? Function(EventModel events)? uploaded,
-    TResult? Function(EventModel events)? updated,
+    TResult? Function()? uploaded,
+    TResult? Function(EventModel event)? updated,
     TResult? Function(Exception error)? error,
   }) {
     return initial?.call();
@@ -788,8 +788,8 @@ class _$_Initial implements _Initial {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(List<EventModel> events)? fetched,
-    TResult Function(EventModel events)? uploaded,
-    TResult Function(EventModel events)? updated,
+    TResult Function()? uploaded,
+    TResult Function(EventModel event)? updated,
     TResult Function(Exception error)? error,
     required TResult orElse(),
   }) {
@@ -887,8 +887,8 @@ class _$_Loading implements _Loading {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(List<EventModel> events) fetched,
-    required TResult Function(EventModel events) uploaded,
-    required TResult Function(EventModel events) updated,
+    required TResult Function() uploaded,
+    required TResult Function(EventModel event) updated,
     required TResult Function(Exception error) error,
   }) {
     return loading();
@@ -900,8 +900,8 @@ class _$_Loading implements _Loading {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(List<EventModel> events)? fetched,
-    TResult? Function(EventModel events)? uploaded,
-    TResult? Function(EventModel events)? updated,
+    TResult? Function()? uploaded,
+    TResult? Function(EventModel event)? updated,
     TResult? Function(Exception error)? error,
   }) {
     return loading?.call();
@@ -913,8 +913,8 @@ class _$_Loading implements _Loading {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(List<EventModel> events)? fetched,
-    TResult Function(EventModel events)? uploaded,
-    TResult Function(EventModel events)? updated,
+    TResult Function()? uploaded,
+    TResult Function(EventModel event)? updated,
     TResult Function(Exception error)? error,
     required TResult orElse(),
   }) {
@@ -1044,8 +1044,8 @@ class _$_Fetched implements _Fetched {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(List<EventModel> events) fetched,
-    required TResult Function(EventModel events) uploaded,
-    required TResult Function(EventModel events) updated,
+    required TResult Function() uploaded,
+    required TResult Function(EventModel event) updated,
     required TResult Function(Exception error) error,
   }) {
     return fetched(events);
@@ -1057,8 +1057,8 @@ class _$_Fetched implements _Fetched {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(List<EventModel> events)? fetched,
-    TResult? Function(EventModel events)? uploaded,
-    TResult? Function(EventModel events)? updated,
+    TResult? Function()? uploaded,
+    TResult? Function(EventModel event)? updated,
     TResult? Function(Exception error)? error,
   }) {
     return fetched?.call(events);
@@ -1070,8 +1070,8 @@ class _$_Fetched implements _Fetched {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(List<EventModel> events)? fetched,
-    TResult Function(EventModel events)? uploaded,
-    TResult Function(EventModel events)? updated,
+    TResult Function()? uploaded,
+    TResult Function(EventModel event)? updated,
     TResult Function(Exception error)? error,
     required TResult orElse(),
   }) {
@@ -1139,8 +1139,6 @@ abstract class _$$_UploadedCopyWith<$Res> {
   factory _$$_UploadedCopyWith(
           _$_Uploaded value, $Res Function(_$_Uploaded) then) =
       __$$_UploadedCopyWithImpl<$Res>;
-  @useResult
-  $Res call({EventModel events});
 }
 
 /// @nodoc
@@ -1150,50 +1148,26 @@ class __$$_UploadedCopyWithImpl<$Res>
   __$$_UploadedCopyWithImpl(
       _$_Uploaded _value, $Res Function(_$_Uploaded) _then)
       : super(_value, _then);
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? events = null,
-  }) {
-    return _then(_$_Uploaded(
-      events: null == events
-          ? _value.events
-          : events // ignore: cast_nullable_to_non_nullable
-              as EventModel,
-    ));
-  }
 }
 
 /// @nodoc
 
 class _$_Uploaded implements _Uploaded {
-  const _$_Uploaded({required this.events});
-
-  @override
-  final EventModel events;
+  const _$_Uploaded();
 
   @override
   String toString() {
-    return 'EventState.uploaded(events: $events)';
+    return 'EventState.uploaded()';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$_Uploaded &&
-            (identical(other.events, events) || other.events == events));
+        (other.runtimeType == runtimeType && other is _$_Uploaded);
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, events);
-
-  @JsonKey(ignore: true)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$_UploadedCopyWith<_$_Uploaded> get copyWith =>
-      __$$_UploadedCopyWithImpl<_$_Uploaded>(this, _$identity);
+  int get hashCode => runtimeType.hashCode;
 
   @override
   @optionalTypeArgs
@@ -1201,11 +1175,11 @@ class _$_Uploaded implements _Uploaded {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(List<EventModel> events) fetched,
-    required TResult Function(EventModel events) uploaded,
-    required TResult Function(EventModel events) updated,
+    required TResult Function() uploaded,
+    required TResult Function(EventModel event) updated,
     required TResult Function(Exception error) error,
   }) {
-    return uploaded(events);
+    return uploaded();
   }
 
   @override
@@ -1214,11 +1188,11 @@ class _$_Uploaded implements _Uploaded {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(List<EventModel> events)? fetched,
-    TResult? Function(EventModel events)? uploaded,
-    TResult? Function(EventModel events)? updated,
+    TResult? Function()? uploaded,
+    TResult? Function(EventModel event)? updated,
     TResult? Function(Exception error)? error,
   }) {
-    return uploaded?.call(events);
+    return uploaded?.call();
   }
 
   @override
@@ -1227,13 +1201,13 @@ class _$_Uploaded implements _Uploaded {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(List<EventModel> events)? fetched,
-    TResult Function(EventModel events)? uploaded,
-    TResult Function(EventModel events)? updated,
+    TResult Function()? uploaded,
+    TResult Function(EventModel event)? updated,
     TResult Function(Exception error)? error,
     required TResult orElse(),
   }) {
     if (uploaded != null) {
-      return uploaded(events);
+      return uploaded();
     }
     return orElse();
   }
@@ -1283,12 +1257,7 @@ class _$_Uploaded implements _Uploaded {
 }
 
 abstract class _Uploaded implements EventState {
-  const factory _Uploaded({required final EventModel events}) = _$_Uploaded;
-
-  EventModel get events;
-  @JsonKey(ignore: true)
-  _$$_UploadedCopyWith<_$_Uploaded> get copyWith =>
-      throw _privateConstructorUsedError;
+  const factory _Uploaded() = _$_Uploaded;
 }
 
 /// @nodoc
@@ -1297,7 +1266,7 @@ abstract class _$$_UpdatedCopyWith<$Res> {
           _$_Updated value, $Res Function(_$_Updated) then) =
       __$$_UpdatedCopyWithImpl<$Res>;
   @useResult
-  $Res call({EventModel events});
+  $Res call({EventModel event});
 }
 
 /// @nodoc
@@ -1310,12 +1279,12 @@ class __$$_UpdatedCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? events = null,
+    Object? event = null,
   }) {
     return _then(_$_Updated(
-      events: null == events
-          ? _value.events
-          : events // ignore: cast_nullable_to_non_nullable
+      event: null == event
+          ? _value.event
+          : event // ignore: cast_nullable_to_non_nullable
               as EventModel,
     ));
   }
@@ -1324,14 +1293,14 @@ class __$$_UpdatedCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_Updated implements _Updated {
-  const _$_Updated({required this.events});
+  const _$_Updated({required this.event});
 
   @override
-  final EventModel events;
+  final EventModel event;
 
   @override
   String toString() {
-    return 'EventState.updated(events: $events)';
+    return 'EventState.updated(event: $event)';
   }
 
   @override
@@ -1339,11 +1308,11 @@ class _$_Updated implements _Updated {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_Updated &&
-            (identical(other.events, events) || other.events == events));
+            (identical(other.event, event) || other.event == event));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, events);
+  int get hashCode => Object.hash(runtimeType, event);
 
   @JsonKey(ignore: true)
   @override
@@ -1357,11 +1326,11 @@ class _$_Updated implements _Updated {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(List<EventModel> events) fetched,
-    required TResult Function(EventModel events) uploaded,
-    required TResult Function(EventModel events) updated,
+    required TResult Function() uploaded,
+    required TResult Function(EventModel event) updated,
     required TResult Function(Exception error) error,
   }) {
-    return updated(events);
+    return updated(event);
   }
 
   @override
@@ -1370,11 +1339,11 @@ class _$_Updated implements _Updated {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(List<EventModel> events)? fetched,
-    TResult? Function(EventModel events)? uploaded,
-    TResult? Function(EventModel events)? updated,
+    TResult? Function()? uploaded,
+    TResult? Function(EventModel event)? updated,
     TResult? Function(Exception error)? error,
   }) {
-    return updated?.call(events);
+    return updated?.call(event);
   }
 
   @override
@@ -1383,13 +1352,13 @@ class _$_Updated implements _Updated {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(List<EventModel> events)? fetched,
-    TResult Function(EventModel events)? uploaded,
-    TResult Function(EventModel events)? updated,
+    TResult Function()? uploaded,
+    TResult Function(EventModel event)? updated,
     TResult Function(Exception error)? error,
     required TResult orElse(),
   }) {
     if (updated != null) {
-      return updated(events);
+      return updated(event);
     }
     return orElse();
   }
@@ -1439,9 +1408,9 @@ class _$_Updated implements _Updated {
 }
 
 abstract class _Updated implements EventState {
-  const factory _Updated({required final EventModel events}) = _$_Updated;
+  const factory _Updated({required final EventModel event}) = _$_Updated;
 
-  EventModel get events;
+  EventModel get event;
   @JsonKey(ignore: true)
   _$$_UpdatedCopyWith<_$_Updated> get copyWith =>
       throw _privateConstructorUsedError;
@@ -1512,8 +1481,8 @@ class _$_Error implements _Error {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(List<EventModel> events) fetched,
-    required TResult Function(EventModel events) uploaded,
-    required TResult Function(EventModel events) updated,
+    required TResult Function() uploaded,
+    required TResult Function(EventModel event) updated,
     required TResult Function(Exception error) error,
   }) {
     return error(this.error);
@@ -1525,8 +1494,8 @@ class _$_Error implements _Error {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(List<EventModel> events)? fetched,
-    TResult? Function(EventModel events)? uploaded,
-    TResult? Function(EventModel events)? updated,
+    TResult? Function()? uploaded,
+    TResult? Function(EventModel event)? updated,
     TResult? Function(Exception error)? error,
   }) {
     return error?.call(this.error);
@@ -1538,8 +1507,8 @@ class _$_Error implements _Error {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(List<EventModel> events)? fetched,
-    TResult Function(EventModel events)? uploaded,
-    TResult Function(EventModel events)? updated,
+    TResult Function()? uploaded,
+    TResult Function(EventModel event)? updated,
     TResult Function(Exception error)? error,
     required TResult orElse(),
   }) {

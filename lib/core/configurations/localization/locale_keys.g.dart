@@ -19,6 +19,7 @@ abstract class  LocaleKeys {
   static const home_description = 'home.description';
   static const home_location = 'home.location';
   static const home_add = 'home.add';
+  static const home_add_event = 'home.add_event';
   static const home = 'home';
   static const profile_sign_out = 'profile.sign_out';
   static const profile_my_events = 'profile.my_events';

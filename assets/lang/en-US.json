@@ -19,7 +19,8 @@
         "title": "Title",
         "description": "Description",
         "location": "Location",
-        "add": "Add"
+        "add": "Add",
+        "add_event": "Add event"
     },
     "profile":{
        "sign_out": "Sign out",

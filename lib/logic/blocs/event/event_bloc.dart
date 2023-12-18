@@ -27,17 +27,24 @@ class EventBloc extends Bloc<EventEvent, EventState> {
     Emitter<EventState> emit,
   ) async {
     emit(const EventState.loading());
-    final response =await  _eventService.fetchEvents();
+    final response = await _eventService.fetchEvents();
     response.fold(
       (l) => emit(EventState.error(error: l)),
       (r) => emit(EventState.fetched(events: r)),
     );
   }
 
-  FutureOr<void> _onEventCreateEvent(
+  Future<FutureOr<void>> _onEventCreateEvent(
     _EventCreateEvent event,
     Emitter<EventState> emit,
-  ) {}
+  ) async {
+    emit(const EventState.loading());
+    final response = await _eventService.createEvent(event: event.event);
+    response.fold(
+      (l) => emit(EventState.error(error: l)),
+      (r) => emit(const EventState.uploaded()),
+    );
+  }
 
   FutureOr<void> _onEventUpdateEvent(
     _EventUpdateEvent event,

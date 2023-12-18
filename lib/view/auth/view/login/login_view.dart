@@ -57,7 +57,7 @@ class _LoginViewState extends State<LoginView>
               text: LocaleKeys.auth_password.tr(),
               controller: _passwordController,
               obscureText: !value,
-              validator: (text) => lenghtHasToBeAtLeast(8, text),
+              validator: (text) => lenghtHasToBeAtLeast(6, text),
               suffixIcon: IconButton(
                 icon: Icon(
                   value ? Icons.visibility : Icons.visibility_off,

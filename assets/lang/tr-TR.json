@@ -19,7 +19,8 @@
         "title": "Başlık",
         "description": "Açıklama",
         "location": "Konum",
-        "add": "Ekle"
+        "add": "Ekle",
+        "add_event": "Etkinlik ekle"
     },
     "profile":{
        "sign_out": "Çıkış yap",
