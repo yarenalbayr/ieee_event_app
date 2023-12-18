@@ -13,7 +13,7 @@
         "home": "Home",
         "profile": "Profile"
     },
-    "home":{
+    "home": {
         "date": "Date",
         "time": "Time",
         "title": "Title",
@@ -22,8 +22,11 @@
         "add": "Add",
         "add_event": "Add event"
     },
-    "profile":{
-       "sign_out": "Sign out",
-       "my_events": "My events"
+    "profile": {
+        "sign_out": "Sign out",
+        "my_events": "My events",
+        "languages": "Languages",
+        "english": "English",
+        "turkish": "Türkçe"
     }
 }

@@ -1,5 +1,5 @@
 {
-    "auth":{
+    "auth": {
         "login": "Giriş yap",
         "email": "Email",
         "password": "Şifre",
@@ -13,7 +13,7 @@
         "home": "Ana Sayfa",
         "profile": "Profil"
     },
-    "home":{
+    "home": {
         "date": "Tarih",
         "time": "Zaman",
         "title": "Başlık",
@@ -22,8 +22,11 @@
         "add": "Ekle",
         "add_event": "Etkinlik ekle"
     },
-    "profile":{
-       "sign_out": "Çıkış yap",
-       "my_events": "Etkinliklerim"
+    "profile": {
+        "sign_out": "Çıkış yap",
+        "my_events": "Etkinliklerim",
+        "languages": "Diller",
+        "english": "English",
+        "turkish": "Türkçe"
     }
 }

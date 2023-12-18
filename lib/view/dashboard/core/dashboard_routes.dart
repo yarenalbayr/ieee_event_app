@@ -7,6 +7,7 @@ class DashboardRoutes {
   static const String splash = '$moduleName${_RawDashboardRoutes.splash}';
   static const String home = '$main${_RawDashboardRoutes.home}';
   static const String profile = '$main${_RawDashboardRoutes.profile}';
+  static const String language = '$main${_RawDashboardRoutes.language}';
 }
 
 class _RawDashboardRoutes {
@@ -14,4 +15,5 @@ class _RawDashboardRoutes {
   static const String splash = '/splash';
   static const String home = '/home';
   static const String profile = '/profile';
+  static const String language = '/language';
 }

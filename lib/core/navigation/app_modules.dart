@@ -22,6 +22,7 @@ class AppModules extends Module {
           eventService: i.get<IEventService>(),
         ),
       ),
+      
     ];
   }
 

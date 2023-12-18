@@ -14,6 +14,14 @@ final class AppLocalization extends EasyLocalization {
     AppLanguages.en.locale,
     AppLanguages.tr.locale,
   ];
+
+  static void changeLocale({
+    required Locale locale,
+    required BuildContext context,
+  }) {
+    EasyLocalization.of(context)!.setLocale(locale);
+  }
+
   static const String _path = 'assets/lang';
 }
 

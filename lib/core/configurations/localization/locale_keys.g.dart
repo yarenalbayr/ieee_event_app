@@ -23,6 +23,9 @@ abstract class  LocaleKeys {
   static const home = 'home';
   static const profile_sign_out = 'profile.sign_out';
   static const profile_my_events = 'profile.my_events';
+  static const profile_languages = 'profile.languages';
+  static const profile_english = 'profile.english';
+  static const profile_turkish = 'profile.turkish';
   static const profile = 'profile';
 
 }
