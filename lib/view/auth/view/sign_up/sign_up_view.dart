@@ -41,10 +41,17 @@ class _SignUpViewState extends State<SignUpView>
           AuthEvent.createUser(
             email: _emailController.text,
             password: _passwordController.text,
+            name: _nameController.text,
           ),
         ),
         children: [
-          context.sizedBoxHigh,
+          context.sizedBoxNormal,
+          CustomTextField(
+            text: LocaleKeys.auth_name.tr(),
+            controller: _nameController,
+            validator: isNotEmpty,
+          ),
+          context.sizedBoxNormal,
           CustomTextField(
             text: LocaleKeys.auth_email.tr(),
             controller: _emailController,

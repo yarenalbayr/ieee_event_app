@@ -24,49 +24,46 @@ class AuthView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: true,
-      body: InkWell(
-        onTap: () => FocusScope.of(context).unfocus(),
-        child: Padding(
-          padding: context.paddingNormal,
-          child: SafeArea(
-            child: SingleChildScrollView(
-              child: Form(
-                key: _key,
-                child: Column(
-                  children: [
-                    Align(
-                      alignment: Alignment.centerLeft,
-                      child: Text(
-                        pageName.tr(),
-                        style: context.textTheme.displayLarge
-                            ?.copyWith(fontWeight: FontWeight.w700),
-                      ),
+      body: Padding(
+        padding: context.paddingNormal,
+        child: SafeArea(
+          child: SingleChildScrollView(
+            child: Form(
+              key: _key,
+              child: Column(
+                children: [
+                  Align(
+                    alignment: Alignment.centerLeft,
+                    child: Text(
+                      pageName.tr(),
+                      style: context.textTheme.displayLarge
+                          ?.copyWith(fontWeight: FontWeight.w700),
                     ),
-                    context.sizedBoxHigh,
-                    Image.asset(AppIcons.ieeeLogoBlue),
-                    context.sizedBoxHigh,
-                    ...children,
-                    CustomButton.large(
-                      onPressed: () async {
-                        if (_key.currentState?.validate() != true) return;
-                        onSubmit();
-                      },
-                      text: pageName.tr(),
+                  ),
+                  context.sizedBoxHigh,
+                  Image.asset(AppIcons.ieeeLogoBlue),
+                  context.sizedBoxHigh,
+                  ...children,
+                  CustomButton.large(
+                    onPressed: () async {
+                      if (_key.currentState?.validate() != true) return;
+                      onSubmit();
+                    },
+                    text: pageName.tr(),
+                  ),
+                  TextButton(
+                    child: Text(
+                      (pageName == LocaleKeys.auth_login)
+                          ? '${LocaleKeys.auth_dont_have_account.tr()} ${LocaleKeys.auth_sign_up.tr()}'
+                          : '${LocaleKeys.auth_already_have_account.tr()} ${LocaleKeys.auth_login.tr()}',
                     ),
-                    TextButton(
-                      child: Text(
-                        (pageName == LocaleKeys.auth_login)
-                            ? LocaleKeys.auth_dont_have_account.tr()
-                            : LocaleKeys.auth_already_have_account.tr(),
-                      ),
-                      onPressed: () {
-                        (pageName == LocaleKeys.auth_login)
-                            ? Modular.to.pushNamed(AuthRoutes.signUpView)
-                            : Modular.to.pushNamed(AuthRoutes.loginView);
-                      },
-                    ),
-                  ],
-                ),
+                    onPressed: () {
+                      (pageName == LocaleKeys.auth_login)
+                          ? Modular.to.pushNamed(AuthRoutes.signUpView)
+                          : Modular.to.pushNamed(AuthRoutes.loginView);
+                    },
+                  ),
+                ],
               ),
             ),
           ),

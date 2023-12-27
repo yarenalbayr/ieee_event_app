@@ -1,11 +1,12 @@
 {
     "auth": {
         "login": "Log in",
+        "name"  : "Name",
         "email": "Email",
         "password": "Password",
-        "dont_have_account": "Don't have an account? Sign up!",
+        "dont_have_account": "Don't have an account?",
         "sign_up": "Sign up",
-        "already_have_account": "Already have an account? Log in!"
+        "already_have_account": "Already have an account?"
     },
     "common": {
         "fail": "Something went wrong",
@@ -20,7 +21,18 @@
         "description": "Description",
         "location": "Location",
         "add": "Add",
-        "add_event": "Add event"
+        "add_event": "Add event",
+        "no_events": "No events found.",
+        "eventModel":{
+            "title": "Title",
+            "description": "Description",
+            "location": "Location",
+            "date": "Date",
+            "time": "Time",
+            "comittee"  : "Comittee",
+            "image" : "Image"
+            
+        }
     },
     "profile": {
         "sign_out": "Sign out",

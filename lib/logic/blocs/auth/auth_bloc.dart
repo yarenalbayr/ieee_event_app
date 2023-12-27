@@ -50,6 +50,8 @@ final class AuthBloc extends Bloc<AuthEvent, AuthState> {
     final response = await _authService.createUserWithEmailAndPassword(
       email: event.email,
       password: event.password,
+      name: event.name,
+      
     );
 
     response.fold(

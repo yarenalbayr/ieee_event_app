@@ -574,19 +574,20 @@ mixin _$AuthEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String email, String password) loginUser,
-    required TResult Function(String email, String password) createUser,
+    required TResult Function(String email, String password, String name)
+        createUser,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String email, String password)? loginUser,
-    TResult? Function(String email, String password)? createUser,
+    TResult? Function(String email, String password, String name)? createUser,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String email, String password)? loginUser,
-    TResult Function(String email, String password)? createUser,
+    TResult Function(String email, String password, String name)? createUser,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -728,7 +729,8 @@ class _$_AuthLoginUser implements _AuthLoginUser {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String email, String password) loginUser,
-    required TResult Function(String email, String password) createUser,
+    required TResult Function(String email, String password, String name)
+        createUser,
   }) {
     return loginUser(email, password);
   }
@@ -737,7 +739,7 @@ class _$_AuthLoginUser implements _AuthLoginUser {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String email, String password)? loginUser,
-    TResult? Function(String email, String password)? createUser,
+    TResult? Function(String email, String password, String name)? createUser,
   }) {
     return loginUser?.call(email, password);
   }
@@ -746,7 +748,7 @@ class _$_AuthLoginUser implements _AuthLoginUser {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String email, String password)? loginUser,
-    TResult Function(String email, String password)? createUser,
+    TResult Function(String email, String password, String name)? createUser,
     required TResult orElse(),
   }) {
     if (loginUser != null) {
@@ -810,7 +812,7 @@ abstract class _$$_AuthCreateUserCopyWith<$Res>
       __$$_AuthCreateUserCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String email, String password});
+  $Res call({String email, String password, String name});
 }
 
 /// @nodoc
@@ -826,6 +828,7 @@ class __$$_AuthCreateUserCopyWithImpl<$Res>
   $Res call({
     Object? email = null,
     Object? password = null,
+    Object? name = null,
   }) {
     return _then(_$_AuthCreateUser(
       email: null == email
@@ -836,6 +839,10 @@ class __$$_AuthCreateUserCopyWithImpl<$Res>
           ? _value.password
           : password // ignore: cast_nullable_to_non_nullable
               as String,
+      name: null == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -843,16 +850,19 @@ class __$$_AuthCreateUserCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_AuthCreateUser implements _AuthCreateUser {
-  const _$_AuthCreateUser({required this.email, required this.password});
+  const _$_AuthCreateUser(
+      {required this.email, required this.password, required this.name});
 
   @override
   final String email;
   @override
   final String password;
+  @override
+  final String name;
 
   @override
   String toString() {
-    return 'AuthEvent.createUser(email: $email, password: $password)';
+    return 'AuthEvent.createUser(email: $email, password: $password, name: $name)';
   }
 
   @override
@@ -862,11 +872,12 @@ class _$_AuthCreateUser implements _AuthCreateUser {
             other is _$_AuthCreateUser &&
             (identical(other.email, email) || other.email == email) &&
             (identical(other.password, password) ||
-                other.password == password));
+                other.password == password) &&
+            (identical(other.name, name) || other.name == name));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, email, password);
+  int get hashCode => Object.hash(runtimeType, email, password, name);
 
   @JsonKey(ignore: true)
   @override
@@ -878,29 +889,30 @@ class _$_AuthCreateUser implements _AuthCreateUser {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String email, String password) loginUser,
-    required TResult Function(String email, String password) createUser,
+    required TResult Function(String email, String password, String name)
+        createUser,
   }) {
-    return createUser(email, password);
+    return createUser(email, password, name);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String email, String password)? loginUser,
-    TResult? Function(String email, String password)? createUser,
+    TResult? Function(String email, String password, String name)? createUser,
   }) {
-    return createUser?.call(email, password);
+    return createUser?.call(email, password, name);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String email, String password)? loginUser,
-    TResult Function(String email, String password)? createUser,
+    TResult Function(String email, String password, String name)? createUser,
     required TResult orElse(),
   }) {
     if (createUser != null) {
-      return createUser(email, password);
+      return createUser(email, password, name);
     }
     return orElse();
   }
@@ -940,12 +952,14 @@ class _$_AuthCreateUser implements _AuthCreateUser {
 abstract class _AuthCreateUser implements AuthEvent {
   const factory _AuthCreateUser(
       {required final String email,
-      required final String password}) = _$_AuthCreateUser;
+      required final String password,
+      required final String name}) = _$_AuthCreateUser;
 
   @override
   String get email;
   @override
   String get password;
+  String get name;
   @override
   @JsonKey(ignore: true)
   _$$_AuthCreateUserCopyWith<_$_AuthCreateUser> get copyWith =>

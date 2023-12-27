@@ -1,6 +1,7 @@
 // lib/dashboard/dashboard_module.dart
 
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:ieee_event_app/logic/blocs/cubits/filter_cubit.dart';
 import 'package:ieee_event_app/logic/blocs/cubits/localization_cubit.dart';
 import 'package:ieee_event_app/logic/blocs/cubits/nav_bar_cubit.dart';
 import 'package:ieee_event_app/logic/blocs/event/event_bloc.dart';
@@ -18,6 +19,7 @@ class DashboardModule extends Module {
   @override
   final List<Bind> binds = [
     Bind.lazySingleton((i) => NavBarCubit()),
+    Bind.lazySingleton((i) => FilterCubit()),
     Bind.lazySingleton(
       (i) => LocalizationCubit(),
     ),

@@ -1,4 +1,9 @@
+// ignore_for_file: lines_longer_than_80_chars
+
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:ieee_event_app/core/configurations/localization/locale_keys.g.dart';
+import 'package:ieee_event_app/core/extensions/context_extensions.dart';
 import 'package:ieee_event_app/logic/models/event_model.dart';
 
 class EventCard extends StatelessWidget {
@@ -46,18 +51,18 @@ class EventCard extends StatelessWidget {
                 ),
                 const SizedBox(height: 8),
                 Text(
-                  'Date: ${event.date.toLocal()}',
+                  '${LocaleKeys.home_date.tr()}: ${DateFormatExtension(date: event.date).dateFormatDayNumMonth}',
                   style: const TextStyle(fontSize: 14, color: Colors.grey),
                 ),
                 const SizedBox(height: 8),
                 Text(
-                  'Committee: ${event.committee.name}',
+                  '${LocaleKeys.home_eventModel_comittee.tr()}: ${event.committee.name}',
                   style: const TextStyle(fontSize: 14, color: Colors.grey),
                 ),
                 const SizedBox(height: 8),
                 if (event.location != null)
                   Text(
-                    'Location: ${event.location}',
+                    '${LocaleKeys.home_location.tr()}: ${event.location}',
                     style: const TextStyle(fontSize: 14, color: Colors.grey),
                   ),
               ],
