@@ -8,6 +8,7 @@ import 'package:ieee_event_app/core/enums/index.dart';
 import 'package:ieee_event_app/core/extensions/index.dart';
 import 'package:ieee_event_app/core/helpers/logger.dart';
 import 'package:ieee_event_app/core/navigation/navigation_extension.dart';
+import 'package:ieee_event_app/logic/blocs/cubits/filter_cubit.dart';
 import 'package:ieee_event_app/logic/blocs/cubits/localization_cubit.dart';
 import 'package:ieee_event_app/logic/blocs/cubits/nav_bar_cubit.dart';
 import 'package:ieee_event_app/logic/blocs/event/event_bloc.dart';
@@ -32,27 +33,30 @@ class _DashboardViewState extends State<DashboardView> with DashboardViewMixin {
         return BlocBuilder<NavBarCubit, int>(
           bloc: context.get<NavBarCubit>(),
           builder: (context, selectedIndex) {
-            return Scaffold(
-              body: const RouterOutlet(),
-              bottomNavigationBar: CustomButtomNavBar(
-                currentIndex: selectedIndex,
-                onPressed: (index) {
-                  context.get<NavBarCubit>().setIndex(index);
-                },
+            return BlocProvider(
+              create: (context) => FilterCubit(),
+              child: Scaffold(
+                body: const RouterOutlet(),
+                bottomNavigationBar: CustomButtomNavBar(
+                  currentIndex: selectedIndex,
+                  onPressed: (index) {
+                    context.get<NavBarCubit>().setIndex(index);
+                  },
+                ),
+                floatingActionButtonLocation:
+                    FloatingActionButtonLocation.centerDocked,
+                floatingActionButton: isUserAuthorized()
+                    ? FloatingActionButton(
+                        onPressed: onSheetOpened,
+                        shape: const CircleBorder(),
+                        hoverColor: ColorConstants.backgroundColor,
+                        child: Icon(
+                          Icons.add,
+                          color: ColorConstants.textColorLight.withOpacity(0.6),
+                        ),
+                      )
+                    : null,
               ),
-              floatingActionButtonLocation:
-                  FloatingActionButtonLocation.centerDocked,
-              floatingActionButton: isUserAuthorized()
-                  ? FloatingActionButton(
-                      onPressed: onSheetOpened,
-                      shape: const CircleBorder(),
-                      hoverColor: ColorConstants.backgroundColor,
-                      child: Icon(
-                        Icons.add,
-                        color: ColorConstants.textColorLight.withOpacity(0.6),
-                      ),
-                    )
-                  : null,
             );
           },
         );

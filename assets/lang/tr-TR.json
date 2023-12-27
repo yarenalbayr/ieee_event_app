@@ -1,6 +1,7 @@
 {
     "auth": {
         "login": "Giriş yap",
+        "name"  : "İsim",
         "email": "Email",
         "password": "Şifre",
         "dont_have_account": "Hesabın yok mu?",
@@ -20,7 +21,17 @@
         "description": "Açıklama",
         "location": "Konum",
         "add": "Ekle",
-        "add_event": "Etkinlik ekle"
+        "add_event": "Etkinlik ekle",
+        "no_events": "Etkinlik bulunamadı.",
+        "eventModel":{
+            "title": "Başlık",
+            "description": "Açıklama",
+            "location": "Konum",
+            "date": "Tarih",
+            "time": "Zaman",
+            "comittee"  : "Komite",
+            "image" : "Resim"
+        }
     },
     "profile": {
         "sign_out": "Çıkış yap",

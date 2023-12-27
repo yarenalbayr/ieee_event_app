@@ -38,6 +38,20 @@ ThemeData get darkTheme => ThemeData(
         ),
       ),
       textTheme: CustomTextTheme(),
+      datePickerTheme: const DatePickerThemeData(
+        backgroundColor: ColorConstants.backgroundColor,
+        headerForegroundColor: ColorConstants.textColorLight,
+        dayForegroundColor:
+            MaterialStatePropertyAll(ColorConstants.textColorLight),
+        rangePickerHeaderForegroundColor: ColorConstants.textColorLight,
+        dayStyle: TextStyle(
+          fontSize: 16,
+          fontWeight: FontWeight.w700,
+          color: ColorConstants.textColorLight,
+        ),
+        todayForegroundColor:
+            MaterialStatePropertyAll(ColorConstants.textColorLight),
+      ),
       inputDecorationTheme: const InputDecorationTheme(
         fillColor: ColorConstants.formColor,
         filled: true,

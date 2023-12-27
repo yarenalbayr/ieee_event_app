@@ -18,6 +18,7 @@ void main() {
     final result = await authService.createUserWithEmailAndPassword(
       email: 'test1@gmail.com',
       password: 'Abc123#',
+      name: 'test1',
     );
 
     result.fold(

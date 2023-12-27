@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
@@ -51,7 +52,9 @@ extension DateFormateExtension on BuildContext {
   DateFormat get dateFormatHourShort => DateFormat('ha');
   DateFormat get dateFormatHourLong => DateFormat('h:mma');
   DateFormat get dateFormatDayNumMonth => DateFormat('E d MMM');
-  DateFormat get dateFormatDayNumMonthYear => DateFormat('EEEE, MMMM d, y');
+  DateFormat get dateFormatDayNumMonthYear => DateFormat(
+        'EEEE, MMMM d, y',
+      );
 }
 
 class DateFormatExtension {
@@ -62,7 +65,10 @@ class DateFormatExtension {
 
   String get dateFormatHourShort => DateFormat('ha').format(date);
   String get dateFormatHourLong => DateFormat('h:mma').format(date);
-  String get dateFormatDayNumMonth => DateFormat('E d MMM').format(date);
-  String get dateFormatDayNumMonthYear =>
-      DateFormat('EEEE, MMMM d, y').format(date);
+  String get dateFormatDayNumMonth => DateFormat(
+        'E d MMM',
+      ).format(date);
+  String get dateFormatDayNumMonthYear => DateFormat(
+        'EEEE, MMMM d, y',
+      ).format(date);
 }

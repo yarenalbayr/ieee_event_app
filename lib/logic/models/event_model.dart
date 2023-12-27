@@ -1,11 +1,12 @@
 import 'dart:convert';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:equatable/equatable.dart';
 import 'package:ieee_event_app/core/enums/comitee_enum.dart';
 
 // ignore_for_file: public_member_api_docs, sort_constructors_first
-class EventModel {
-  EventModel({
+class EventModel extends Equatable {
+  const EventModel({
     required this.date,
     required this.committee,
     required this.title,
@@ -54,4 +55,38 @@ class EventModel {
 
   factory EventModel.fromJson(String source) =>
       EventModel.fromMap(json.decode(source) as Map<String, dynamic>);
+
+  EventModel copyWith({
+    String? title,
+    String? description,
+    String? image,
+    DateTime? date,
+    String? location,
+    String? id,
+    ECommittees? committee,
+    List<String>? attendees,
+  }) {
+    return EventModel(
+      title: title ?? this.title,
+      description: description ?? this.description,
+      image: image ?? this.image,
+      date: date ?? this.date,
+      location: location ?? this.location,
+      id: id ?? this.id,
+      committee: committee ?? this.committee,
+      attendees: attendees ?? this.attendees,
+    );
+  }
+
+  @override
+  List<Object?> get props => [
+        title,
+        description,
+        image,
+        date,
+        location,
+        id,
+        committee,
+        attendees,
+      ];
 }

@@ -10,6 +10,7 @@ abstract class IAuthService {
   Future<Either<Exception, UserModel>> createUserWithEmailAndPassword({
     required String email,
     required String password,
+    required String name,
   });
 
   Future<Either<Exception, UserModel>> signInWithEmailAndPassword({
@@ -35,13 +36,14 @@ final class AuthService implements IAuthService {
   Future<Either<Exception, UserModel>> createUserWithEmailAndPassword({
     required String email,
     required String password,
+    required String name,
   }) {
     return _errorWrapper(() async {
       final userCredentials = await _firebaseAuth
           .createUserWithEmailAndPassword(email: email, password: password);
 
       final user = UserModel.fromFirebaseUser(userCredentials.user!);
-      await saveUser(user);
+      await saveUser(user.copyWith(name: name));
       return user.toRight();
     });
   }

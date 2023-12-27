@@ -27,7 +27,9 @@ class EventService extends IEventService with ErrorWrapper {
   @override
   Future<Either<Exception, List<EventModel>>> fetchEvents() async {
     return errorWrapper(() async {
-      final events = await FirebaseCollections.events.collectionReference.get();
+      final events = await FirebaseCollections.events.collectionReference
+          .orderBy('date', descending: false)
+          .get();
       final eventsList =
           events.docs.map((e) => EventModel.fromMap(e.data())).toList();
       return eventsList.toRight();
